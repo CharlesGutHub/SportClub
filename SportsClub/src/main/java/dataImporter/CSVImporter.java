@@ -20,15 +20,15 @@ public class CSVImporter {
 
         String sql = """
             INSERT INTO licences (
-                code_commune, libelle, region, fed_2019, nom_fed,
-                l_2019, l_0_4_2019, l_5_9_2019, l_10_14_2019, l_15_19_2019, l_20_29_2019,
-                l_30_44_2019, l_45_59_2019, l_60_74_2019, l_75_2019,
-                l_f_2019, l_0_4_f_2019, l_5_9_f_2019, l_10_14_f_2019, l_15_19_f_2019, l_20_29_f_2019,
-                l_30_44_f_2019, l_45_59_f_2019, l_60_74_f_2019, l_75_f_2019,
-                l_h_2019, l_0_4_h_2019, l_5_9_h_2019, l_10_14_h_2019, l_15_19_h_2019, l_20_29_h_2019,
-                l_30_44_h_2019, l_45_59_h_2019, l_60_74_h_2019, l_75_h_2019,
-                l_qp_2019, l_qp_f_2019, l_qp_h_2019
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                code_commune, libelle, region, fed_2022, nom_fed,
+                l_2022, l_0_4_2022, l_5_9_2022, l_10_14_2022, l_15_19_2022, l_20_29_2022,
+                l_30_44_2022, l_45_59_2022, l_60_74_2022, l_75_2022,
+                l_f_2022, l_0_4_f_2022, l_5_9_f_2022, l_10_14_f_2022, l_15_19_f_2022, l_20_29_f_2022,
+                l_30_44_f_2022, l_45_59_f_2022, l_60_74_f_2022, l_75_f_2022,
+                l_h_2022, l_0_4_h_2022, l_5_9_h_2022, l_10_14_h_2022, l_15_19_h_2022, l_20_29_h_2022,
+                l_30_44_h_2022, l_45_59_h_2022, l_60_74_h_2022, l_75_h_2022,
+                l_qp_2022, l_qp_f_2022, l_qp_h_2022
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             """;
 
         try (BufferedReader br = new BufferedReader(new FileReader(csvPath));
@@ -40,11 +40,14 @@ public class CSVImporter {
 
             while ((line = br.readLine()) != null) {
                 String[] data = line.split(separator, -1);
+                for (int i = 0; i < data.length; i++) {
+                    data[i] = data[i].replace("\"", "").trim();
+                }
 
                 pstmt.setString(1, safeGet(data, 0)); // code_commune
                 pstmt.setString(2, safeGet(data, 1)); // libelle
                 pstmt.setString(3, safeGet(data, 5)); // region
-                pstmt.setString(4, safeGet(data, 7)); // fed_2019
+                pstmt.setString(4, safeGet(data, 7)); // fed_2022
                 pstmt.setString(5, safeGet(data, 8)); // nom_fed
 
                 pstmt.setInt(6, safeParseInt(data, 46)); // total licences
@@ -94,7 +97,22 @@ public class CSVImporter {
     }
 
     private static String safeGet(String[] data, int index) {
-        return (data.length > index && !data[index].isEmpty()) ? data[index] : null;
+        if (data.length > index && !data[index].isEmpty()) {
+            String value = data[index].trim();
+            if (index == 0) { // Correction spécifique pour code_commune uniquement
+                if (value.startsWith("NR")) {
+                    return "NR";
+                }
+                // Sécuriser aussi : si jamais une valeur normale dépasse 5 caractères
+                if (value.length() > 5) {
+                    return value.substring(0, 5); // On garde que les 5 premiers caractères
+                }
+            }
+            
+            
+            return value;
+        }
+        return null;
     }
 
     private static int safeParseInt(String[] data, int index) {
