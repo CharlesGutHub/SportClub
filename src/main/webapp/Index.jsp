@@ -7,11 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
+aezaeeeeeeeeeeeeeeeeeee
 
-<form action=>
-
-
-</form>
-
+<a href="login.jsp" > Se connecter</a>
+<a href="SignIn.jsp" > S'inscrire</a>
+<a href="recherche.jsp" > Rechercher</a>
 </body>
 </html>
