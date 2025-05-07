@@ -9,7 +9,127 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 
 public class CSVImporter {
+	
+	public static void modifGeo() {
+	    String csvPath = ConfigLoader.getProperty("csvpostalcode.path");
+	    String separator = ConfigLoader.getProperty("csvpostalcode.separator");
 
+	    if (separator == null || separator.isEmpty()) {
+	        separator = ";"; // Valeur par défaut
+	    }
+
+	    String sql = "UPDATE code_postaux "
+	               + "SET longitude = ?, latitude = ? "
+	               + "WHERE code_insee = ? AND code_postal = ?";
+
+	    try (BufferedReader br = new BufferedReader(new FileReader(csvPath));
+	         Connection con = DataBaseCon.getConnection();
+	         PreparedStatement pstmt = con.prepareStatement(sql)) {
+
+	        String line;
+	        br.readLine(); // Ignorer l'en-tête
+
+	        while ((line = br.readLine()) != null) {
+	            String[] data = line.split(separator, -1);
+	            for (int i = 0; i < data.length; i++) {
+	                data[i] = data[i].replace("\"", "").trim();
+	            }
+
+	            String geoPoint = safeGet(data, 9); // colonne geo_point_2d
+
+	            if (geoPoint.contains(",")) {
+	                String[] coords = geoPoint.split(",");
+	                double latitude = Double.parseDouble(coords[0].trim());
+	                double longitude = Double.parseDouble(coords[1].trim());
+
+	                pstmt.setDouble(1, longitude);
+	                pstmt.setDouble(2, latitude);
+	                pstmt.setString(3, safeGet(data, 0)); // code_insee
+	                pstmt.setString(4, safeGet(data, 1)); // code_postal
+
+	                pstmt.executeUpdate();
+	            }
+	        }
+
+	        System.out.println("Import terminé avec succès de la liste de codes postaux !");
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	}
+
+	
+	
+	
+	public static void importCodePostaux()
+	{
+		String csvPath = ConfigLoader.getProperty("csvpostalcode.path");
+		String separator = ConfigLoader.getProperty("csvpostalcode.separator");
+		
+		if (separator == null || separator.isEmpty()) {
+            separator = ";"; // Par défaut
+        }
+		
+		String sql = "INSERT IGNORE INTO code_postaux (code_insee,code_postal) VALUES (?,?)";
+		
+		try (BufferedReader br = new BufferedReader(new FileReader(csvPath));
+	             Connection con = DataBaseCon.getConnection();
+	             PreparedStatement pstmt = con.prepareStatement(sql)) {
+
+	            String line;
+	            br.readLine(); // Ignorer l'en-tête
+
+	            while ((line = br.readLine()) != null) {
+	                String[] data = line.split(separator, -1);
+	                for (int i = 0; i < data.length; i++) {
+	                    data[i] = data[i].replace("\"", "").trim();
+	                }
+
+	                pstmt.setString(1, safeGet(data, 0)); // code_fed
+	                pstmt.setString(2, safeGet(data, 2)); // code_postal
+	                pstmt.executeUpdate();
+	            }
+
+	            System.out.println("Import terminé avec succès de la liste de code postaux!");
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	}
+	
+	public static void importListeFed()
+	{
+		String csvPath = ConfigLoader.getProperty("csvlistfeddata.path");
+		String separator = ConfigLoader.getProperty("csvlistfeddata.separator");
+		
+		if (separator == null || separator.isEmpty()) {
+            separator = ";"; // Par défaut
+        }
+		
+		String sql = "INSERT INTO list_fed (code_fed,nom_fed) VALUES (?,?)";
+		
+		try (BufferedReader br = new BufferedReader(new FileReader(csvPath));
+	             Connection con = DataBaseCon.getConnection();
+	             PreparedStatement pstmt = con.prepareStatement(sql)) {
+
+	            String line;
+	            br.readLine(); // Ignorer l'en-tête
+
+	            while ((line = br.readLine()) != null) {
+	                String[] data = line.split(separator, -1);
+	                for (int i = 0; i < data.length; i++) {
+	                    data[i] = data[i].replace("\"", "").trim();
+	                }
+
+	                pstmt.setString(1, safeGet(data, 1)); // code_fed
+	                pstmt.setString(2, safeGet(data, 0)); // nom_fed
+	                pstmt.executeUpdate();
+	            }
+
+	            System.out.println("Import terminé avec succès de la liste de fed!");
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	}
+	
     public static void importDataLicence() {
         String csvPath = ConfigLoader.getProperty("csvlicensedata.path");
         String separator = ConfigLoader.getProperty("csvlicensedata.separator");
@@ -95,7 +215,7 @@ public class CSVImporter {
                 pstmt.executeUpdate();
             }
 
-            System.out.println("Import terminé avec succès !");
+            System.out.println("Import terminé avec succès de la table licences !");
         } catch (Exception e) {
             e.printStackTrace();
         }

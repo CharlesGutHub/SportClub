@@ -5,8 +5,13 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.io.IOException;
+import jakarta.servlet.http.HttpSession;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
+import dao.RechercheDAO;
+import models.Licence;
 /**
  * Servlet implementation class Recherche
  */
@@ -26,15 +31,22 @@ public class Recherche extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		String zoneGeoType = (String) request.getParameter("zoneGeoType");
+		String zoneGeo = (String) request.getParameter("zoneGeo");
+		ArrayList<Licence> list = RechercheDAO.rechercheZoneGeo(zoneGeo, zoneGeoType);		
+		HttpSession session = request.getSession();
+		System.out.println(list.size());
+		request.setAttribute("listClub", list);
+		request.getRequestDispatcher("recherche.jsp").forward(request, response);
+
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 		doGet(request, response);
 	}
 

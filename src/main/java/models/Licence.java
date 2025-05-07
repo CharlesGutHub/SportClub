@@ -6,7 +6,17 @@ public class Licence {
     private String region;
     private String fed2022;
     private String nomFed;
-    private int total2022;
+    private String departement;
+    public String getDepartement() {
+		return departement;
+	}
+
+
+	public void setDepartement(String departement) {
+		this.departement = departement;
+	}
+
+	private int total2022;
     private int age0_4_2022;
     private int age5_9_2022;
     private int age10_14_2022;
@@ -39,6 +49,18 @@ public class Licence {
     private int totalQpv2022;
     private int femmesQpv2022;
     private int hommesQpv2022;
+    
+    public Licence(String codeCommune,String libelle,String region,String departement,String nomFed,int total2022, int totalFemmes2022 ) 
+    {
+    	this.codeCommune = codeCommune;
+    	this.libelle = libelle;
+    	this.region = region;
+    	this.departement = departement;
+    	this.nomFed = nomFed;
+    	this.total2022 = total2022;
+    	this.totalFemmes2022 = totalFemmes2022;
+    }
+    
     
 	public Licence(String codeCommune, String libelle, String region, String fed2022, String nomFed, int total2022,
 			int age0_4_2022, int age5_9_2022, int age10_14_2022, int age15_19_2022, int age20_29_2022,

@@ -29,7 +29,7 @@
         <label for="acteur">Acteur du monde sportif</label><br><br>
 
         <input type="submit" value="Se connecter">
-    </form>
+</form>
 
 </body>
 </html>
