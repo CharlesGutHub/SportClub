@@ -74,7 +74,9 @@ public class CSVImporter {
 		try (BufferedReader br = new BufferedReader(new FileReader(csvPath));
 	             Connection con = DataBaseCon.getConnection();
 	             PreparedStatement pstmt = con.prepareStatement(sql)) {
-
+				
+			
+				
 	            String line;
 	            br.readLine(); // Ignorer l'en-tête
 

@@ -7,16 +7,9 @@ public class Licence {
     private String fed2022;
     private String nomFed;
     private String departement;
-    public String getDepartement() {
-		return departement;
-	}
-
-
-	public void setDepartement(String departement) {
-		this.departement = departement;
-	}
-
-	private int total2022;
+    private double latitude;
+    private double longitude;
+    private int total2022;
     private int age0_4_2022;
     private int age5_9_2022;
     private int age10_14_2022;
@@ -50,7 +43,7 @@ public class Licence {
     private int femmesQpv2022;
     private int hommesQpv2022;
     
-    public Licence(String codeCommune,String libelle,String region,String departement,String nomFed,int total2022, int totalFemmes2022 ) 
+    public Licence(String codeCommune,String libelle,String region,String departement,String nomFed,int total2022, int totalFemmes2022, double latitude, double longitude ) 
     {
     	this.codeCommune = codeCommune;
     	this.libelle = libelle;
@@ -59,6 +52,8 @@ public class Licence {
     	this.nomFed = nomFed;
     	this.total2022 = total2022;
     	this.totalFemmes2022 = totalFemmes2022;
+    	this.latitude = latitude;
+    	this.longitude = longitude;
     }
     
     
@@ -110,6 +105,35 @@ public class Licence {
 		this.femmesQpv2022 = femmesQpv2022;
 		this.hommesQpv2022 = hommesQpv2022;
 	}
+	public String getDepartement() {
+		return departement;
+	}
+
+
+	public void setDepartement(String departement) {
+		this.departement = departement;
+	}
+	
+
+	public double getLatitude() {
+		return latitude;
+	}
+
+
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
+	}
+
+
+	public double getLongitude() {
+		return longitude;
+	}
+
+
+	public void setLongitude(double longitude) {
+		this.longitude = longitude;
+	}
+
 
 	public String getCodeCommune() {
 		return codeCommune;

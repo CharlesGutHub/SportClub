@@ -34,9 +34,37 @@ public class Recherche extends HttpServlet {
 		
 		String zoneGeoType = (String) request.getParameter("zoneGeoType");
 		String zoneGeo = (String) request.getParameter("zoneGeo");
-		ArrayList<Licence> list = RechercheDAO.rechercheZoneGeo(zoneGeo, zoneGeoType);		
-		HttpSession session = request.getSession();
+		String pageParam = request.getParameter("page");
+		
+		if (zoneGeoType.equals("departement"))
+		{
+			String[] zone = zoneGeo.split("–");
+
+		   
+		    if (zone.length == 2) {
+		        zoneGeo = zone[0].trim(); 
+		        System.out.println("Numéro de département : " + zoneGeo);
+		    } else {
+		        
+		        System.out.println("Format invalide pour zoneGeo : " + zoneGeo);
+		    }
+		}
+		
+		int page = 1; // valeur par défaut
+
+		if (pageParam != null && !pageParam.isEmpty()) {
+		    try {
+		        page = Integer.parseInt(pageParam);
+		    } catch (NumberFormatException e) {
+		        page = 1; 
+		    }
+		}
+		int offset = (page - 1) * 1000;
+		ArrayList<Licence> list = RechercheDAO.rechercheZoneGeo(zoneGeo, zoneGeoType,offset);		
 		System.out.println(list.size());
+		request.setAttribute("zoneGeoType", zoneGeoType);
+		request.setAttribute("zoneGeo", zoneGeo);
+		request.setAttribute("page", page);
 		request.setAttribute("listClub", list);
 		request.getRequestDispatcher("recherche.jsp").forward(request, response);
 

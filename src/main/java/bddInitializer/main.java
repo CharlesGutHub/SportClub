@@ -9,7 +9,7 @@ public class main {
 		//CSVImporter.importListeFed();
 		//CSVImporter.importCodePostaux();
 		//CSVImporter.importDataLicence();
-		CSVImporter.modifGeo();
+		//CSVImporter.modifGeo();
 
 	}
 
