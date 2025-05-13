@@ -165,50 +165,50 @@ public class CSVImporter {
                 for (int i = 0; i < data.length; i++) {
                     data[i] = data[i].replace("\"", "").trim();
                 }
+                
+                int totF= sumFemales(data);
 
                 pstmt.setString(1, safeGet(data, 0)); // code_commune
                 pstmt.setString(2, safeGet(data, 1)); // libelle
-                pstmt.setString(3,safeGet(data,2));	  //Code QPV
-                pstmt.setString(4,safeGet(data,3));	  //Nom QPV
-                pstmt.setString(5, safeGet(data,4));  // departement
-                
-                
+                pstmt.setString(3, safeGet(data, 2)); // code_qpv
+                pstmt.setString(4, safeGet(data, 3)); // nom_qpv
+                pstmt.setString(5, safeGet(data, 4)); // departement
                 pstmt.setString(6, safeGet(data, 5)); // region
                 pstmt.setString(7, safeGet(data, 7)); // fed_2022
                 pstmt.setString(8, safeGet(data, 8)); // nom_fed
 
-                pstmt.setInt(9, safeParseInt(data, 46)); // total licences
-                pstmt.setInt(10, safeParseInt(data, 9) + safeParseInt(data, 24));  // 1-4 ans
+                pstmt.setInt(9, safeParseInt(data, 45)); // total licences
+                pstmt.setInt(10, safeParseInt(data, 9) + safeParseInt(data, 27));  // 1-4 ans
                 pstmt.setInt(11, safeParseInt(data, 10) + safeParseInt(data, 25)); // 5-9 ans
                 pstmt.setInt(12, safeParseInt(data, 11) + safeParseInt(data, 26)); // 10-14 ans
-                pstmt.setInt(13, safeParseInt(data, 12) +safeParseInt(data, 27)); //  15-19 ans
-                pstmt.setInt(14, safeParseInt(data, 13) + safeParseInt(data, 14) + safeParseInt(data, 28) + safeParseInt(data, 29)); //  20-29 ans
+                pstmt.setInt(13, safeParseInt(data, 12) + safeParseInt(data, 27)); // 15-19 ans
+                pstmt.setInt(14, safeParseInt(data, 13) + safeParseInt(data, 14) + safeParseInt(data, 28) + safeParseInt(data, 29)); // 20-29 ans
                 pstmt.setInt(15, safeParseInt(data, 15) + safeParseInt(data, 16) + safeParseInt(data, 30) + safeParseInt(data, 31)); // 30-44 ans
                 pstmt.setInt(16, safeParseInt(data, 17) + safeParseInt(data, 18) + safeParseInt(data, 32) + safeParseInt(data, 33)); // 45-59 ans
-                pstmt.setInt(17, safeParseInt(data, 19) + safeParseInt(data, 20) + safeParseInt(data, 34) + safeParseInt(data, 35)); //60-74 ans
+                pstmt.setInt(17, safeParseInt(data, 19) + safeParseInt(data, 20) + safeParseInt(data, 34) + safeParseInt(data, 35)); // 60-74 ans
                 pstmt.setInt(18, safeParseInt(data, 21) + safeParseInt(data, 22) + safeParseInt(data, 36) + safeParseInt(data, 37)); // 75+ ans
 
-                pstmt.setInt(19, sumFemales(data)); // total licenciées femme
+                pstmt.setInt(19, totF); // total licenciées femme
                 pstmt.setInt(20, safeParseInt(data, 9));  // F 1-4 ans
                 pstmt.setInt(21, safeParseInt(data, 10)); // F 5-9 ans
                 pstmt.setInt(22, safeParseInt(data, 11)); // F 10-14 ans
                 pstmt.setInt(23, safeParseInt(data, 12)); // F 15-19 ans
                 pstmt.setInt(24, safeParseInt(data, 13) + safeParseInt(data, 14)); // F 20-29 ans
-                pstmt.setInt(25, safeParseInt(data, 15) + safeParseInt(data, 16)); // F 30-44 ans
-                pstmt.setInt(26, safeParseInt(data, 17) + safeParseInt(data, 18)); // F 45-59 ans
-                pstmt.setInt(27, safeParseInt(data, 19) + safeParseInt(data, 20)); // F 60-74 ans
-                pstmt.setInt(28, safeParseInt(data, 21) + safeParseInt(data, 22)); // F 75+
+                pstmt.setInt(25, safeParseInt(data, 15) + safeParseInt(data, 16) + safeParseInt(data, 17)); // F 30-44 ans
+                pstmt.setInt(26, safeParseInt(data, 18) + safeParseInt(data, 19) + safeParseInt(data, 20)); // F 45-59 ans
+                pstmt.setInt(27, safeParseInt(data, 21) + safeParseInt(data, 22) + safeParseInt(data, 23)); // F 60-74 ans
+                pstmt.setInt(28, safeParseInt(data, 24) + safeParseInt(data, 25)); // F 75+
 
-                pstmt.setInt(29, safeParseInt(data, 48)); // H total
-                pstmt.setInt(30, safeParseInt(data, 24)); // H 1-4 ans
-                pstmt.setInt(31, safeParseInt(data, 25)); // H 5-9 ans
-                pstmt.setInt(32, safeParseInt(data, 26)); // H 10-14 ans
-                pstmt.setInt(33, safeParseInt(data, 27)); // H 15-19 ans
-                pstmt.setInt(34, safeParseInt(data, 28) + safeParseInt(data, 29)); // H 20-29 ans
-                pstmt.setInt(35, safeParseInt(data, 30) + safeParseInt(data, 31)); // H 30-44 ans
-                pstmt.setInt(36, safeParseInt(data, 32) + safeParseInt(data, 33)); // H 45-59 ans
-                pstmt.setInt(37, safeParseInt(data, 34) + safeParseInt(data, 35)); // H 60-74 ans
-                pstmt.setInt(38, safeParseInt(data, 36) + safeParseInt(data, 37)); // H 75+
+                pstmt.setInt(29, safeParseInt(data, 45) - totF); // H total
+                pstmt.setInt(30, safeParseInt(data, 27)); // H 1-4 ans
+                pstmt.setInt(31, safeParseInt(data, 28)); // H 5-9 ans
+                pstmt.setInt(32, safeParseInt(data, 29)); // H 10-14 ans
+                pstmt.setInt(33, safeParseInt(data, 30)); // H 15-19 ans
+                pstmt.setInt(34, safeParseInt(data, 31) + safeParseInt(data, 32)); // H 20-29 ans
+                pstmt.setInt(35, safeParseInt(data, 33) + safeParseInt(data, 34) + safeParseInt(data, 35)); // H 30-44 ans
+                pstmt.setInt(36, safeParseInt(data, 36) + safeParseInt(data, 37) + safeParseInt(data, 38)); // H 45-59 ans
+                pstmt.setInt(37, safeParseInt(data, 39) + safeParseInt(data, 40) + safeParseInt(data, 41)); // H 60-74 ans
+                pstmt.setInt(38, safeParseInt(data, 42) + safeParseInt(data, 43)); // H 75+
 
                 pstmt.setInt(39, safeParseInt(data, 50)); // QP total
                 pstmt.setInt(40, safeParseInt(data, 51)); // QP femme
@@ -222,6 +222,7 @@ public class CSVImporter {
             e.printStackTrace();
         }
     }
+
     
     public static void importDataClub() {
         String csvPath = ConfigLoader.getProperty("csvclubsdata.path");
@@ -301,7 +302,7 @@ public class CSVImporter {
 
     private static int sumFemales(String[] data) {
         int sum = 0;
-        for (int i = 9; i <= 23; i++) {
+        for (int i = 9; i <= 26; i++) {
             sum += safeParseInt(data, i);
         }
         return sum;

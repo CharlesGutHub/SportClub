@@ -9,7 +9,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  
+  <!--  CSS leaflet -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
      crossorigin=""/>
@@ -35,9 +35,10 @@
 	    <option value="departement">Département</option>
 	  </select><br><br>
 	
-	  <label for="zoneGeo">Zone :</label>
-	  <input list="zoneOptions" id="zoneGeo" name="zoneGeo">
-	  <datalist id="zoneOptions"></datalist>
+	 	<label for="zoneGeo">Zone :</label>
+		<select id="zoneGeo" name="zoneGeo" onchange="validateSelect()">
+		  <option value="">Sélectionnez une zone</option>
+		</select>
 	
 	  <br><br>
 	  <input type="hidden" name="page" value="${page}" />
@@ -50,6 +51,9 @@
 	<div class="tabs">
 	  <button class="tab-button" onclick="showTab('tableau')">Affichage Tableau</button>
 	  <button class="tab-button" onclick="showTab('carte')">Affichage Carte</button>
+	  <c:if test="${role == 'elu'}">
+	    <button class="tab-button" onclick="showTab('graph')">Graphique</button>
+	  </c:if>
 	</div>
 	
 	<div id="tableau" class="tab-content">
@@ -87,6 +91,11 @@
 	<div id="carte" class="tab-content" style="display: none;">
 	  <div id="map" style="height: 680px; width: 80%;margin-left:75px"></div>
 	</div>
+	<div id="graph" class="tab-content" style="display: none;">
+		<canvas id="chart" style="height: 680px; width: 80%;margin-left:75px"></canvas>
+	</div>
+	
+	
 	
 	<c:if test="${page > 1}">
 	  	<a href="Recherche?zoneGeoType=${zoneGeoType}&zoneGeo=${zoneGeo}&page=${page - 1}">Précédent</a>
@@ -97,7 +106,7 @@
 		
 	<script>
 	
-	var map = L.map('map').setView([${listClub[0].latitude}, ${listClub[0].longitude}], 9); //Initialisation de la carte à Paris, France
+	var map = L.map('map').setView([${listClub[0].latitude}, ${listClub[0].longitude}], 9); //Initialisation à la première ville de la liste
 	var tableauMarqueurs = [];
 	
 	//Add JOSM layer to the map
@@ -128,6 +137,31 @@
   		var groupe = new L.featureGroup(tableauMarqueurs);
 	</script>
 	
+	<!-- Gestion des graphiques pour l'élu -->
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	
+	<script>
+	  const ctx = document.getElementById('chart');//exemple de graphique à adapter
+	
+	  new Chart(ctx, {
+	    type: 'bar',
+	    data: {
+	      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+	      datasets: [{
+	        label: '# of Votes',
+	        data: [12, 19, 3, 5, 2, 3],
+	        borderWidth: 1
+	      }]
+	    },
+	    options: {
+	      scales: {
+	        y: {
+	          beginAtZero: true
+	        }
+	      }
+	    }
+	  });
+	</script>
 	
 	<script>
 	const regions = [
@@ -154,25 +188,25 @@
 	    "85–Vendée", "86–Vienne", "87–Haute-Vienne", "88–Vosges", "89–Yonne", "90–Territoire de Belfort", 
 	    "91–Essonne", "92–Hauts-de-Seine", "93–Seine-Saint-Denis", "94–Val-de-Marne", "95–Val-d'Oise", "971–Guadeloupe", 
 	    "972–Martinique", "973–Guyane", "974–La Réunion"
-	  // Mayotte volontairement exclue
 	];
 	
 	function changerListe() {
-	  const type = document.getElementById("zoneGeoType").value;
-	  const datalist = document.getElementById("zoneOptions");
-	
-	  // Supprimer les options existantes
-	  datalist.innerHTML = "";
-	
-	  const options = (type === "region") ? regions : departements;
-	
-	  for (const item of options) {
-	    const option = document.createElement("option");
-	    option.value = item;
-	    datalist.appendChild(option);
-	  }
+	    const type = document.getElementById("zoneGeoType").value;
+	    const select = document.getElementById("zoneGeo");
+	    
+	    // Vider le select avant de rajouter les options
+	    select.innerHTML = '<option value="">Sélectionnez une zone</option>'; 
+
+	    const options = (type === "region") ? regions : departements;
+
+	    for (const item of options) {//parcours du tableau
+	        const option = document.createElement("option"); //création d'un élément dans la page web
+	        option.value = item; //lui donne la valeur la valeur de l'item du tableau
+	        option.textContent = item;//rajoute le texte de l'item du tableau
+	        select.appendChild(option);//le rajoute au select
+	    }
 	}
-	
+
 	// Appel initial (par défaut "region")
 	changerListe();
 	</script>
@@ -187,7 +221,7 @@
 	    tabs.forEach(tab => tab.style.display = "none");
 	
 	    // Afficher l'onglet sélectionné
-	    document.getElementById(tabId).style.display = "block";
+	    document.getElementById(tabId).style.display = "block"; //block pour mettre l'onglet voulu en visible
 	    
 	    if (tabId === "carte") {//même type et même valeur (== convertit les deux valeurs au même types)
 	        map.invalidateSize();

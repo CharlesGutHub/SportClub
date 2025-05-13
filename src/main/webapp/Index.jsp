@@ -4,10 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Sportclub</title>
 </head>
 <body>
-aezaeeeeeeeeeeeeeeeeeee
+<h1>Bienvenue</h1>
 
 <a href="login.jsp" > Se connecter</a>
 <a href="SignIn.jsp" > S'inscrire</a>
