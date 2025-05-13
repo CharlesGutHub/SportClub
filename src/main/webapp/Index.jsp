@@ -4,14 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Sportclub</title>
 </head>
 <body>
+<h1>Bienvenue</h1>
 
-<form action=>
-
-
-</form>
-
+<a href="login.jsp" > Se connecter</a>
+<a href="SignIn.jsp" > S'inscrire</a>
+<a href="recherche.jsp" > Rechercher</a>
 </body>
 </html>
