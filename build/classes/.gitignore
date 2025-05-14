@@ -1,3 +1,7 @@
-/models/
+/bddInitializer/
+/config.properties
 /dao/
+/dataImporter/
+/database.properties
 /servlets/
+/utils/
