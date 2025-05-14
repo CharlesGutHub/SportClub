@@ -1,10 +1,10 @@
-package servlets;
+package controller;
 
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import models.InfoCommune;
-import dao.CommuneDAO;
+import models.InfoRegion;
+import dao.RegionDAO;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -14,8 +14,8 @@ import java.io.InputStream;
 import java.sql.*;
 import java.util.*;
 
-@WebServlet("/ShowCommune")
-public class ShowCommune extends HttpServlet {
+@WebServlet("/ShowRegion")
+public class ShowRegion extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
@@ -43,12 +43,12 @@ public class ShowCommune extends HttpServlet {
             }
             // Connexion à la base de données et récupération des données
             try (Connection connection = DriverManager.getConnection(jdbcURL, username, password)) {
-            	CommuneDAO dao = new CommuneDAO(connection);
-                List<InfoCommune> infos = dao.getInfosParCommune();
+                RegionDAO dao = new RegionDAO(connection);
+                List<InfoRegion> infos = dao.getInfosParRegion();
 
                 // Passer les données à la vue (JSP)
-                request.setAttribute("infosCommune", infos);
-                request.getRequestDispatcher("/DisplayCommune.jsp").forward(request, response);
+                request.setAttribute("infosRegion", infos);
+                request.getRequestDispatcher("/DisplayRegion.jsp").forward(request, response);
             }
 
         } catch (Exception e) {

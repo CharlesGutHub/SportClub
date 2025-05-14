@@ -1,4 +1,4 @@
-package servlets;
+package controller;
 
 import dao.ClubDAO;
 import jakarta.servlet.http.HttpServlet;

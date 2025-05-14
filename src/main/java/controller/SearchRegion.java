@@ -1,4 +1,4 @@
-package servlets;
+package controller;
 
 import dao.RegionDAO;
 import jakarta.servlet.ServletException;
