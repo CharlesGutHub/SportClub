@@ -39,6 +39,9 @@
 		<select id="zoneGeo" name="zoneGeo" onchange="validateSelect()">
 		  <option value="">Sélectionnez une zone</option>
 		</select>
+		<br><br>
+		<label for="fed">Sport :</label>
+		<input type="text" id="sport" name="sport"/>
 	
 	  <br><br>
 	  <input type="hidden" name="page" value="${page}" />
@@ -168,7 +171,7 @@
 	  "Auvergne-Rhône-Alpes", "Bourgogne-Franche-Comté", "Bretagne", "Centre-Val de Loire", "Corse",
 	  "Grand Est", "Hauts-de-France", "Île-de-France", "Normandie", "Nouvelle-Aquitaine",
 	  "Occitanie", "Pays de la Loire", "Provence-Alpes-Côte d'Azur",
-	  "Guadeloupe", "Martinique", "Guyane", "La Réunion", "Mayotte"
+	  "Guadeloupe", "Martinique", "Guyane", "La Réunion"
 	];
 	
 	const departements = [

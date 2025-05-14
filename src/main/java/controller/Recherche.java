@@ -35,6 +35,7 @@ public class Recherche extends HttpServlet {
 		String zoneGeoType = (String) request.getParameter("zoneGeoType");
 		String zoneGeo = (String) request.getParameter("zoneGeo");
 		String pageParam = request.getParameter("page");
+		String sport = request.getParameter("sport");
 		
 		if (zoneGeoType.equals("departement"))
 		{
@@ -60,11 +61,13 @@ public class Recherche extends HttpServlet {
 		    }
 		}
 		int offset = (page - 1) * 1000;
-		ArrayList<Licence> list = RechercheDAO.rechercheZoneGeo(zoneGeo, zoneGeoType,offset);		
+		System.out.println(sport);
+		ArrayList<Licence> list = RechercheDAO.rechercheZoneGeo(zoneGeo, zoneGeoType,offset,sport);		
 		System.out.println(list.size());
 		request.setAttribute("zoneGeoType", zoneGeoType);
 		request.setAttribute("zoneGeo", zoneGeo);
 		request.setAttribute("page", page);
+		request.setAttribute("sport", sport);
 		request.setAttribute("listClub", list);
 		request.getRequestDispatcher("recherche.jsp").forward(request, response);
 

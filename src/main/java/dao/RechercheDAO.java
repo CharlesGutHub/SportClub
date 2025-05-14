@@ -9,25 +9,28 @@ import utils.DataBaseCon;
 
 public class RechercheDAO {
 	
-	public static ArrayList<Licence> rechercheZoneGeo(String zoneGeo,String zoneGeoType,int offset) {
+	public static ArrayList<Licence> rechercheZoneGeo(String zoneGeo,String zoneGeoType,int offset,String sport) {
 		
 		ArrayList<Licence> listLicence = new ArrayList<>();
 		String sql;
 
 		if(zoneGeoType.equals("region")) 
 		{
-			sql = "SELECT l.*, cp.code_postal, cp.latitude, cp.longitude FROM Licences l LEFT JOIN code_postaux cp ON l.code_commune = cp.code_insee WHERE l.region = ? LIMIT 1000 OFFSET ?;";
+			sql = "SELECT l.*, cp.code_postal, cp.latitude, cp.longitude FROM Licences l LEFT JOIN code_postaux cp ON l.code_commune = cp.code_insee WHERE l.region = ? AND nom_fed LIKE ?;";
 		}
 		else
 		{
-			sql = "SELECT l.*, cp.code_postal, cp.latitude, cp.longitude FROM Licences l LEFT JOIN code_postaux cp ON l.code_commune = cp.code_insee WHERE l.departement = ? LIMIT 1000 OFFSET ?;";
+			sql = "SELECT l.*, cp.code_postal, cp.latitude, cp.longitude FROM Licences l LEFT JOIN code_postaux cp ON l.code_commune = cp.code_insee WHERE l.departement = ?;";
 		}
 		
 		try (Connection con = DataBaseCon.getConnection();
 	             PreparedStatement stmt = con.prepareStatement(sql)) {
 
 	            stmt.setString(1, zoneGeo);
-	            stmt.setInt(2, offset);
+	            if(zoneGeoType.equals("region")) 
+	            {
+	            stmt.setString(2, "%" + sport.trim() + "%");
+	            }
 
 	            ResultSet rs = stmt.executeQuery();
 
