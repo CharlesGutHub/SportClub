@@ -5,11 +5,11 @@ import dataImporter.CSVImporter;
 public class main {
 
 	public static void main(String[] args) {
-		DatabaseInitializer.createTable();
-		DatabaseInitializer.createTableClub();
-		DatabaseInitializer.createTableUser();
+		
+		//CSVImporter.importListeFed();
+		//CSVImporter.importCodePostaux();
 		CSVImporter.importDataLicence();
-		//CSVImporter.importDataClub();
+		//CSVImporter.modifGeo();
 
 	}
 
