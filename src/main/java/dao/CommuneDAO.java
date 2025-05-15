@@ -24,7 +24,7 @@ public class CommuneDAO {
                 "SUM(f_1_4_ans + f_5_9_ans + f_10_14_ans + f_15_19_ans + f_20_24_ans + f_25_29_ans + f_30_34_ans + " +
                 "f_35_39_ans + f_40_44_ans + f_45_49_ans + f_50_54_ans + f_55_59_ans + f_60_64_ans + f_65_69_ans + " +
                 "f_70_74_ans + f_75_79_ans + f_80_99_ans + f_nr) AS totalFemme " +
-                "FROM population " +
+                "FROM licences " +
                 "GROUP BY commune";
 
         try (PreparedStatement stmt = connection.prepareStatement(sql);
