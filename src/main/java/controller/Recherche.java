@@ -6,12 +6,13 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import models.Licence;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-import dao.RechercheDAO;
-import models.Licence;
+import dao.LicenceDAO;
+
 /**
  * Servlet implementation class Recherche
  */
@@ -62,7 +63,7 @@ public class Recherche extends HttpServlet {
 		}
 		int offset = (page - 1) * 1000;
 		System.out.println(sport);
-		ArrayList<Licence> list = RechercheDAO.rechercheZoneGeo(zoneGeo, zoneGeoType,offset,sport);		
+		ArrayList<Licence> list = LicenceDAO.rechercheZoneGeo(zoneGeo, zoneGeoType,offset,sport);		
 		System.out.println(list.size());
 		request.setAttribute("zoneGeoType", zoneGeoType);
 		request.setAttribute("zoneGeo", zoneGeo);
