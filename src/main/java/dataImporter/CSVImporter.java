@@ -7,8 +7,84 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 public class CSVImporter {
+	
+	
+	public static void modifGeoAvecInsertSiAbsent() {
+	    String csvPath = ConfigLoader.getProperty("csvpostalcode.path");
+	    String separator = ConfigLoader.getProperty("csvpostalcode.separator");
+
+	    if (separator == null || separator.isEmpty()) {
+	        separator = ";"; // Valeur par défaut
+	    }
+
+	    String updateSql = "UPDATE code_postaux SET longitude = ?, latitude = ? WHERE code_insee = ? AND code_postal = ?";
+	    String checkSql = "SELECT COUNT(*) FROM code_postaux WHERE code_insee = ? AND code_postal = ?";
+	    String insertSql = "INSERT INTO code_postaux (code_insee, code_postal, latitude, longitude) VALUES (?, ?, ?, ?)";
+
+	    try (BufferedReader br = new BufferedReader(new FileReader(csvPath));
+	         Connection con = DataBaseCon.getConnection();
+	         PreparedStatement updateStmt = con.prepareStatement(updateSql);
+	         PreparedStatement checkStmt = con.prepareStatement(checkSql);
+	         PreparedStatement insertStmt = con.prepareStatement(insertSql)) {
+
+	        String line;
+	        br.readLine(); // ignorer l'en-tête
+
+	        while ((line = br.readLine()) != null) {
+	            String[] data = line.split(separator, -1);
+	            for (int i = 0; i < data.length; i++) {
+	                data[i] = data[i].replace("\"", "").trim();
+	            }
+
+	            String codeInsee = safeGet(data, 0);
+	            String codePostauxRaw = safeGet(data, 1); // Peut contenir 76000/76100
+	            String geoPoint = safeGet(data, 9); // "latitude,longitude"
+
+	            if (geoPoint.contains(",")) {
+	                String[] coords = geoPoint.split(",");
+	                double latitude = Double.parseDouble(coords[0].trim());
+	                double longitude = Double.parseDouble(coords[1].trim());
+
+	                String[] codePostaux = codePostauxRaw.split("/");
+
+	                for (String codePostal : codePostaux) {
+	                    codePostal = codePostal.trim();
+	                    if (codePostal.isEmpty()) continue;
+
+	                    // Vérifie si la ligne existe
+	                    checkStmt.setString(1, codeInsee);
+	                    checkStmt.setString(2, codePostal);
+	                    ResultSet rs = checkStmt.executeQuery();
+	                    rs.next();
+	                    int count = rs.getInt(1);
+
+	                    if (count > 0) {
+	                        // Mise à jour
+	                        updateStmt.setDouble(1, longitude);
+	                        updateStmt.setDouble(2, latitude);
+	                        updateStmt.setString(3, codeInsee);
+	                        updateStmt.setString(4, codePostal);
+	                        updateStmt.executeUpdate();
+	                    } else {
+	                        // Insertion
+	                        insertStmt.setString(1, codeInsee);
+	                        insertStmt.setString(2, codePostal);
+	                        insertStmt.setDouble(3, latitude);
+	                        insertStmt.setDouble(4, longitude);
+	                        insertStmt.executeUpdate();
+	                    }
+	                }
+	            }
+	        }
+
+	        System.out.println("Import avec création ou mise à jour terminé !");
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	}
 	
 	public static void modifGeo() {
 	    String csvPath = ConfigLoader.getProperty("csvpostalcode.path");
@@ -274,23 +350,31 @@ public class CSVImporter {
     }
 
     private static String safeGet(String[] data, int index) {
-        if (data.length > index && !data[index].isEmpty()) {
-            String value = data[index].trim();
-            if (index == 0) { // Correction spécifique pour code_commune uniquement
-                if (value.startsWith("NR")) {
-                    return "NR";
-                }
-                // Sécuriser aussi : si jamais une valeur normale dépasse 5 caractères
-                if (value.length() > 5) {
-                    return value.substring(0, 5); // On garde que les 5 premiers caractères
-                }
-            }
-            
-            
-            return value;
+        if (data == null || index >= data.length) {
+            return null;
         }
-        return null;
+
+        String value = data[index].trim();
+
+        if (value.isEmpty()) {
+            return null;
+        }
+
+        // Traitement spécifique pour le code INSEE (index 0)
+        if (index == 0) {
+            if (value.startsWith("NR")) {
+                return "NR"; // Cas particulier : "NR" pour "non renseigné"
+            }
+
+            // Si jamais le code INSEE est mal formaté (> 5 caractères), on tronque
+            if (value.length() > 5) {
+                return value.substring(0, 5);
+            }
+        }
+
+        return value;
     }
+
 
     private static int safeParseInt(String[] data, int index) {
         try {

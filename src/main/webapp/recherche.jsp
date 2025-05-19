@@ -2,9 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
-
-
-    
+ 
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,12 +38,28 @@
 		  <option value="">Sélectionnez une zone</option>
 		</select>
 		<br><br>
-		<label for="fed">Sport :</label>
+		<label for="sport">Sport :</label>
 		<input type="text" id="sport" name="sport"/>
 	
 	  <br><br>
 	  <input type="hidden" name="page" value="${page}" />
 	  <input type="submit" id="boutonRecherche" value="Rechercher" disabled>
+	</form>
+	
+	<form action="RechercheRayon" method="get">
+	  <label for="recherche">Commune :</label>
+	  <div style="position: relative; display: inline-block; width: 200px;">
+	    <input type="text" id="recherche" name="recherche" oninput="rechercheIntel()" autocomplete="off" style="width: 100%;"/>
+	    <div id="suggestions" style="border: 1px solid #ccc; width: 200px; position: absolute; background: #fff; z-index: 1000;"></div>
+	  </div>
+	  <input type="hidden" id="latitude" name="latitude" value="" />
+	  <input type="hidden" id ="longitude" name="longitude" value="" />
+	  <label for="km" style="margin-left:10px">Rayon :</label>
+	  <div style="position: relative; display: inline-block; width: 200px;">
+	  	<output>24</output>
+	 	 <input type="range" name="rayon" value="24" min="1" max="100" oninput="this.previousElementSibling.value = this.value">
+	 	 <input type="submit" id="boutonRecherche" value="Rechercher">
+	  </div>
 	</form>
 	
 	
@@ -107,6 +121,55 @@
 		<a href="Recherche?zoneGeoType=${zoneGeoType}&zoneGeo=${zoneGeo}&page=${page + 1}">Suivant</a>
 
 		
+		
+	<script>
+	
+	let timer;
+
+	function rechercheIntel() {
+	    clearTimeout(timer);
+	    const suggestionBox = document.getElementById("suggestions");
+
+	    timer = setTimeout(() => {
+	        const input = document.getElementById("recherche").value.toLowerCase();
+	        if (input.length < 3) {
+	            suggestionBox.style.display = "none";
+	            return;
+	        }
+
+	        fetch("RechercheIntelligenteCommune?recherche=" + encodeURIComponent(input))
+	            .then(response => {
+	                if (!response.ok) {
+	                    throw new Error("Erreur lors de la récupération des suggestions");
+	                }
+	                return response.json();
+	            })
+	            .then(suggestions => {
+	                if (suggestions.length > 0) {
+	                    suggestionBox.innerHTML = suggestions.map(c => {
+	                    	 return '<div onclick="choisirCommune(\'' + c.nom.replace(/'/g, "\\'") + '\',' + c.latitude + ',' + c.longitude + ')" style="padding: 5px; cursor: pointer;">' +
+	                         c.nom + ', ' + c.codePostale +
+	                         '</div>';
+	                    }).join('');
+	                    suggestionBox.style.display = "block";
+	                } else {
+	                    suggestionBox.style.display = "none";
+	                }
+	            })
+	            .catch(error => {
+	                console.error("Erreur : ", error);
+	                suggestionBox.style.display = "none";
+	            });
+	    }, 100); // Debounce de 100ms
+	}
+
+	function choisirCommune(nom,latitude,longitude) {
+		document.getElementById("recherche").value = nom;
+		document.getElementById("latitude").value = latitude;
+		document.getElementById("longitude").value = longitude;
+		document.getElementById("suggestions").style.display = "none";
+	}
+	</script>
 	<script>
 	
 	var map = L.map('map').setView([${listClub[0].latitude}, ${listClub[0].longitude}], 9); //Initialisation à la première ville de la liste
@@ -143,6 +206,7 @@
 	<!-- Gestion des graphiques pour l'élu -->
 	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 	
+	<!-- Graphique -->
 	<script>
 	  const ctx = document.getElementById('chart');//exemple de graphique à adapter
 	
@@ -166,6 +230,7 @@
 	  });
 	</script>
 	
+	<!-- Gestion des listes de régions/départements -->
 	<script>
 	const regions = [
 	  "Auvergne-Rhône-Alpes", "Bourgogne-Franche-Comté", "Bretagne", "Centre-Val de Loire", "Corse",

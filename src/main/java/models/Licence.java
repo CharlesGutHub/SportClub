@@ -42,6 +42,7 @@ public class Licence {
     private int totalQpv2022;
     private int femmesQpv2022;
     private int hommesQpv2022;
+	private String codePostale;
     
     public Licence(String codeCommune,String libelle,String region,String departement,String nomFed,int total2022, int totalFemmes2022, double latitude, double longitude ) 
     {
@@ -105,6 +106,14 @@ public class Licence {
 		this.femmesQpv2022 = femmesQpv2022;
 		this.hommesQpv2022 = hommesQpv2022;
 	}
+	public Licence(String libelle, String codePostale, double latitude, double longitude) {
+		this.libelle = libelle;
+		this.codePostale = codePostale;
+		this.latitude = latitude;
+		this.longitude = longitude;
+	}
+
+
 	public String getDepartement() {
 		return departement;
 	}
