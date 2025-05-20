@@ -19,12 +19,12 @@ public class DepartementDAO {
 
         String sql = "SELECT departement AS departement, " +
                 "SUM(l_2022) AS total, " +
-                "SUM(l_f_2022) AS totalFemme " +
+                "SUM(l_h_2022) AS totalHomme, " +  // Virgule ajoutée ici
+                "SUM(l_f_2022) AS totalFemme " +   // Virgule optionnelle ici (dernière clause)
                 "FROM licences GROUP BY departement";
+        
+        try (PreparedStatement stmt = connection.prepareStatement(sql);
 
-        try (
-        		Connection con = DataBaseCon.getConnection();
-        		PreparedStatement stmt = connection.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {

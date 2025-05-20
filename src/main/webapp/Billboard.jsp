@@ -4,47 +4,7 @@
 <html>
 <head>
     <title>BillBoard - Annonces</title>
-    <style>
-        .billboard {
-            width: 80%;
-            margin: 30px auto;
-            font-family: Arial, sans-serif;
-        }
-        .announce {
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            padding: 15px;
-            margin-bottom: 20px;
-            background-color: #f9f9f9;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        .announce-message {
-            font-size: 18px;
-            margin-bottom: 10px;
-            color: #333;
-        }
-        .announce-date {
-            font-size: 14px;
-            color: #666;
-            font-style: italic;
-        }
-        .back-btn {
-            display: inline-block;
-            padding: 8px 15px;
-            background-color: #333;
-            color: white;
-            text-decoration: none;
-            border-radius: 4px;
-            margin-top: 20px;
-        }
-        .error {
-            color: red;
-            padding: 10px;
-            background-color: #ffeeee;
-            border: 1px solid #ffcccc;
-            border-radius: 4px;
-        }
-    </style>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Billboard.css">
 </head>
 <body>
     <div class="billboard">
@@ -71,7 +31,7 @@
             </c:otherwise>
         </c:choose>
         
-        <a href="index.jsp" class="back-btn">Retour à l'accueil</a>
+        <a href="Index.jsp" class="back-btn">Retour à l'accueil</a>
     </div>
 </body>
 </html>

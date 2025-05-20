@@ -37,5 +37,6 @@
     <%   }
        } %>
   </div>
+  <a href="AnnouncesMenu.jsp" class="btn">Retour</a>
 </body>
 </html>

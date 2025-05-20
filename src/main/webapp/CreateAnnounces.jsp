@@ -58,5 +58,6 @@
             <p style="color: red;">${error}</p>
         </c:if>
     </div>
+    <a href="AnnouncesMenu.jsp" class="btn">Retour</a>
 </body>
 </html>
