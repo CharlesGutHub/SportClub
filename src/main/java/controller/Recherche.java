@@ -7,7 +7,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import models.Licence;
-
+import org.apache.commons.text.StringEscapeUtils;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -33,10 +33,9 @@ public class Recherche extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String zoneGeoType = (String) request.getParameter("zoneGeoType");
-		String zoneGeo = (String) request.getParameter("zoneGeo");
-		String pageParam = request.getParameter("page");
-		String sport = request.getParameter("sport");
+		String zoneGeoType = StringEscapeUtils.escapeHtml4((String) request.getParameter("zoneGeoType"));
+		String zoneGeo = StringEscapeUtils.escapeHtml4((String) request.getParameter("zoneGeo"));
+		String sport = StringEscapeUtils.escapeHtml4(request.getParameter("sport"));
 		
 		if (zoneGeoType.equals("departement"))
 		{
@@ -52,23 +51,12 @@ public class Recherche extends HttpServlet {
 		    }
 		}
 		
-		int page = 1; // valeur par défaut
-
-		if (pageParam != null && !pageParam.isEmpty()) {
-		    try {
-		        page = Integer.parseInt(pageParam);
-		    } catch (NumberFormatException e) {
-		        page = 1; 
-		    }
-		}
-		int offset = (page - 1) * 1000;
 		System.out.println(sport);
-		ArrayList<Licence> list = LicenceDAO.rechercheZoneGeo(zoneGeo, zoneGeoType,offset,sport);		
+		ArrayList<Licence> list = LicenceDAO.rechercheZoneGeo(zoneGeo, zoneGeoType,sport);		
 		System.out.println(list.size());
-		request.setAttribute("zoneGeoType", zoneGeoType);
-		request.setAttribute("zoneGeo", zoneGeo);
-		request.setAttribute("page", page);
-		request.setAttribute("sport", sport);
+		request.setAttribute("zoneGeoType", StringEscapeUtils.escapeHtml4(zoneGeoType));
+		request.setAttribute("zoneGeo", StringEscapeUtils.escapeHtml4(zoneGeo));
+		request.setAttribute("sport", StringEscapeUtils.escapeHtml4(sport));
 		request.setAttribute("listClub", list);
 		request.getRequestDispatcher("recherche.jsp").forward(request, response);
 
