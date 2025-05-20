@@ -47,14 +47,12 @@ public class LogIn extends HttpServlet {
             session.setAttribute("email", email);
             session.setAttribute("role", role);
             response.sendRedirect("Index.jsp");
+            if ("elu".equalsIgnoreCase(role)) {
+                response.sendRedirect("MainMenu.jsp");
+            } else {
+                response.sendRedirect("AnnouncesMenu.jsp");
+            }
             break;
-
-                if ("elu".equalsIgnoreCase(role)) {
-                    response.sendRedirect("MainMenu.jsp");
-                } else {
-                    response.sendRedirect("AnnouncesMenu.jsp");
-                }
-                break;
 
             case 2:
                 request.setAttribute("error", "Votre inscription est en attente de validation.");
