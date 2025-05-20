@@ -36,7 +36,7 @@
     <h1>Administration des annonces</h1>
     <div class="actions">
         <!-- Bouton pour créer une nouvelle annonce -->
-        <form action="CreateAnnounce.jsp" method="get">
+        <form action="CreateAnnounces.jsp" method="get">
             <button type="submit" class="btn-create">Créer une nouvelle annonce</button>
         </form>
 

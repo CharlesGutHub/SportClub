@@ -40,7 +40,7 @@ public class CreateAnnounce extends HttpServlet {
             dao.create(annonce);
             
             // Redirection vers la page de visualisation
-            response.sendRedirect("view-announces");
+            response.sendRedirect("AnnouncesMenu.jsp");
             
         } catch (Exception e) {
             e.printStackTrace();

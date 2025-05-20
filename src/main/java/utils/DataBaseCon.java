@@ -1,23 +1,25 @@
 package utils;
 
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.util.Properties;
 
 public class DataBaseCon {
-    private static final String url = ConfigLoader.getProperty("db.url");
-    private static final String user = ConfigLoader.getProperty("db.user");
-    private static final String password = ConfigLoader.getProperty("db.password");
-
-    static {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver"); // Charger driver MySQL
-        } catch (ClassNotFoundException ex) {
-            throw new RuntimeException("Driver MySQL introuvable : " + ex.getMessage(), ex);
+    public static Connection getConnection() throws Exception {
+        Properties props = new Properties();
+        try (InputStream input = DataBaseCon.class.getClassLoader().getResourceAsStream("database.properties")) {
+            if (input == null) {
+                throw new Exception("Fichier database.properties introuvable.");
+            }
+            props.load(input);
         }
-    }
 
-    public static Connection getConnection() throws SQLException {
+        String url = props.getProperty("db.url");
+        String user = props.getProperty("db.username");
+        String password = props.getProperty("db.password");
+
+        Class.forName("com.mysql.cj.jdbc.Driver");
         return DriverManager.getConnection(url, user, password);
     }
 }
