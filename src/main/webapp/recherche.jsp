@@ -45,7 +45,7 @@
 	
 	  <br><br>
 	  <input type="hidden" name="page" value="${page}" />
-	  <input type="submit" value="Rechercher">
+	  <input type="submit" id="boutonRecherche" value="Rechercher" disabled>
 	</form>
 	
 	
@@ -193,6 +193,18 @@
 	    "972–Martinique", "973–Guyane", "974–La Réunion"
 	];
 	
+	function validateSelect() {
+	    const zoneGeo = document.getElementById('zoneGeo').value;
+	    const searchBtn = document.getElementById('boutonRecherche');
+
+	    // Si une zone est sélectionnée, activer le bouton
+	    if (zoneGeo) {
+	        searchBtn.disabled = false;
+	    } else {
+	        searchBtn.disabled = true;
+	    }
+	}
+	
 	function changerListe() {
 	    const type = document.getElementById("zoneGeoType").value;
 	    const select = document.getElementById("zoneGeo");
@@ -206,8 +218,10 @@
 	        const option = document.createElement("option"); //création d'un élément dans la page web
 	        option.value = item; //lui donne la valeur la valeur de l'item du tableau
 	        option.textContent = item;//rajoute le texte de l'item du tableau
-	        select.appendChild(option);//le rajoute au select
+	        select.appendChild(option);//le rajoute au select        
 	    }
+	    
+	    validateSelect();
 	}
 
 	// Appel initial (par défaut "region")
