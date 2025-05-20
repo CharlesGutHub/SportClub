@@ -9,7 +9,9 @@
   String expVal = fmt.format(exp);
 %>
 <html>
-<head><title>Modifier annonce #<%= a.getId() %></title></head>
+<head><title>Modifier annonce #<%= a.getId() %></title>
+<link rel ="stylesheet" href ="${pageContext.request.contextPath}/css/UpdateAnnounce.css">
+</head>
 <body>
   <h1>Modifier annonce #<%= a.getId() %></h1>
   <form action="UpdateAnnounce" method="post">

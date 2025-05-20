@@ -2,35 +2,7 @@
 <html>
 <head>
     <title>Gestion des annonces</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            padding: 2rem;
-        }
-        .actions {
-            display: flex;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-        .actions form {
-            display: inline;
-        }
-        .actions button {
-            padding: 0.75rem 1.5rem;
-            font-size: 1rem;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        .btn-create {
-            background-color: #28a745;
-            color: white;
-        }
-        .btn-modify {
-            background-color: #007bff;
-            color: white;
-        }
-    </style>
+        <link rel ="stylesheet" href ="${pageContext.request.contextPath}/css/AdminAnnouncementMenu.css">
 </head>
 <body>
     <h1>Administration des annonces</h1>

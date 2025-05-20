@@ -4,32 +4,7 @@
 <html>
 <head>
 <title>Licences par région</title>
-<style>
-.card-container {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 1em;
-	margin: 20px;
-}
-
-.card {
-	background-color: #e8f0fe;
-	border-radius: 10px;
-	padding: 1em;
-	width: 250px;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-	font-family: Arial, sans-serif;
-}
-
-.card h3 {
-	margin: 0 0 10px 0;
-	color: #2c3e50;
-}
-
-.card p {
-	margin: 5px 0;
-}
-</style>
+<link rel ="stylesheet" href ="${pageContext.request.contextPath}/css/DisplayRegion.css">
 </head>
 <body>
 

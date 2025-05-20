@@ -7,13 +7,8 @@
 <html>
 <head>
     <title>Gestion des annonces</title>
-    <style>
-      /* simple grid */
-      .grid { display: flex; flex-wrap: wrap; gap: 1rem; padding: 1rem; }
-      .card { border:1px solid #ccc; border-radius:4px; padding:1rem; width:300px; }
-      .actions { margin-top:0.5rem; }
-      .actions a { margin-right:0.5rem; text-decoration:none; }
-    </style>
+    <link rel ="stylesheet" href ="${pageContext.request.contextPath}/css/ViewAdminAnnounces.css">
+    
 </head>
 <body>
   <h1>Administration des annonces</h1>

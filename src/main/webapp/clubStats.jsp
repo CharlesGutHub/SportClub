@@ -10,36 +10,7 @@
 <html>
 <head>
     <title>Statistiques Clubs</title>
-    <style>
-        /* Style de base pour le corps de la page */
-        body {
-            font-family: Arial, sans-serif;
-            background: #f7f7f7;
-        }
-        /* Conteneur flex pour aligner les cartes */
-        .container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            padding: 20px;
-        }
-        /* Style pour chaque carte */
-        .card {
-            background: white;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-            width: 300px;
-        }
-        /* En-tête de la carte */
-        .card h2 {
-            margin-top: 0;
-        }
-        /* Style pour chaque statistique */
-        .stat {
-            margin: 10px 0;
-        }
-    </style>
+<link rel ="stylesheet" href ="${pageContext.request.contextPath}/css/clubStats.css">
 </head>
 <body>
     <h1 style="text-align:center;">Statistiques des clubs par commune</h1>

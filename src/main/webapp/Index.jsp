@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Sportclub</title>
+<link rel ="stylesheet" href ="${pageContext.request.contextPath}/css/Index.css">
 </head>
 <body>
 <h1>Bienvenue</h1>

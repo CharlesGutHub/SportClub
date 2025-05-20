@@ -2,23 +2,7 @@
 <html>
 <head>
     <title>Tableau d'annonces</title>
-    <style>
-        .container {
-            width: 80%;
-            margin: 0 auto;
-            text-align: center;
-            padding-top: 50px;
-        }
-        .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            margin: 10px;
-            background-color: #4CAF50;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-    </style>
+<link rel ="stylesheet" href ="${pageContext.request.contextPath}/css/AnnouncesMenu.css">
 </head>
 <body>
     <div class="container">

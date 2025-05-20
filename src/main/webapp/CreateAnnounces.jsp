@@ -2,39 +2,7 @@
 <html>
 <head>
     <title>Créer une annonce</title>
-    <style>
-        .form-container {
-            width: 60%;
-            margin: 30px auto;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        label {
-            display: block;
-            margin-bottom: 5px;
-        }
-        textarea {
-            width: 100%;
-            height: 100px;
-            padding: 8px;
-        }
-        input[type="number"] {
-            padding: 8px;
-            width: 60px;
-        }
-        .btn-submit {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-    </style>
+        <link rel ="stylesheet" href ="${pageContext.request.contextPath}/css/CreateAnnounces.css">
 </head>
 <body>
     <div class="form-container">

@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+.grid { 
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 1rem; 
+    padding: 1rem; 
+}
+
+.card { 
+    border: 1px solid #ccc; 
+    border-radius: 4px; 
+    padding: 1rem; 
+    width: 300px; 
+}
+
+.actions { 
+    margin-top: 0.5rem; 
+}
+
+.actions a { 
+    margin-right: 0.5rem; 
+    text-decoration: none; 
+    color: #007acc;
+}

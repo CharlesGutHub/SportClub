@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Inscription</title>
+<link rel ="stylesheet" href ="${pageContext.request.contextPath}/css/SignIn.css">
 </head>
 <body>
 
