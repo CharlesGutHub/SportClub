@@ -1,18 +1,31 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Sportclub</title>
-    <link rel="stylesheet" href="css/style.css"> <!-- Lien vers le CSS externe -->
+    <title>Tableau d'annonces</title>
+    <style>
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            text-align: center;
+            padding-top: 50px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Bienvenue</h1>
-
-    <a href="login.jsp" class="button">Se connecter</a>
-    <a href="SignIn.jsp" class="button">S'inscrire</a>
-    <a href="recherche.jsp" class="button">Rechercher</a>
-    <a href="view-announces" class="button">Les annonces du moment</a>
+    <div class="container">
+        <h1>Bienvenue sur le Tableau d'Annonces</h1>
+        
+        <a href="CreateAnnounces.jsp" class="btn">Créer une annonce</a>
+        <a href="ShowAdminAnnounces" class="btn">Visualiser les annonces</a>
+    </div>
 </body>
 </html>

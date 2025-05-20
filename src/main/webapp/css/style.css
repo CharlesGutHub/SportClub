@@ -1,7 +1,7 @@
 /* style.css */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color: rgb(255, 128, 64);
     padding: 20px;
 }
 
@@ -13,7 +13,7 @@ a.button {
     display: inline-block;
     padding: 10px 20px;
     margin: 10px;
-    background-color: #007BFF; /* Couleur bleue */
+    background-color: rgb(128, 64, 64); /* Couleur bleue */
     color: white;
     text-decoration: none;
     border-radius: 5px;
