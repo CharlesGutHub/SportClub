@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import models.Commune;
 import utils.DataBaseCon;
+import org.apache.commons.text.StringEscapeUtils;
 
 public class CodePostauxDAO {
 	
@@ -25,7 +26,7 @@ public class CodePostauxDAO {
 
 	            while(rs.next())
 	            {
-	            	listLicence.add(new Commune(rs.getString(1),rs.getString(2),rs.getDouble(3),rs.getDouble(4)));
+	            	listLicence.add(new Commune(StringEscapeUtils.escapeHtml4(rs.getString(1)),StringEscapeUtils.escapeHtml4(rs.getString(2)),rs.getDouble(3),rs.getDouble(4)));
 	            }
 
 	        } catch (Exception e) {

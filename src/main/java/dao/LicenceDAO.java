@@ -7,39 +7,36 @@ import java.util.ArrayList;
 
 import models.Licence;
 import utils.DataBaseCon;
-
+import org.apache.commons.text.StringEscapeUtils;
 
 
 public class LicenceDAO {
 	
-	public static ArrayList<Licence> rechercheZoneGeo(String zoneGeo,String zoneGeoType,int offset,String sport) {
+	public static ArrayList<Licence> rechercheZoneGeo(String zoneGeo,String zoneGeoType,String sport) {
 		
 		ArrayList<Licence> listLicence = new ArrayList<>();
 		String sql;
 
 		if(zoneGeoType.equals("region")) 
 		{
-			sql = "SELECT l.*, cp.code_postal, cp.latitude, cp.longitude FROM Licences l LEFT JOIN code_postaux cp ON l.code_commune = cp.code_insee WHERE l.region = ? AND nom_fed LIKE ?;";
+			sql = "SELECT l.*, cp.code_postal, cp.latitude, cp.longitude FROM Licences l LEFT JOIN code_postaux cp ON l.code_commune = cp.code_insee WHERE l.region = ? AND l.nom_fed LIKE ?;";
 		}
 		else
 		{
-			sql = "SELECT l.*, cp.code_postal, cp.latitude, cp.longitude FROM Licences l LEFT JOIN code_postaux cp ON l.code_commune = cp.code_insee WHERE l.departement = ?;";
+			sql = "SELECT l.*, cp.code_postal, cp.latitude, cp.longitude FROM Licences l LEFT JOIN code_postaux cp ON l.code_commune = cp.code_insee WHERE l.departement = ? AND l.nom_fed LIKE ?;";
 		}
 		
 		try (Connection con = DataBaseCon.getConnection();
 	             PreparedStatement stmt = con.prepareStatement(sql)) {
 
 	            stmt.setString(1, zoneGeo);
-	            if(zoneGeoType.equals("region")) 
-	            {
 	            stmt.setString(2, "%" + sport.trim() + "%");
-	            }
 
 	            ResultSet rs = stmt.executeQuery();
 
 	            while(rs.next())
 	            {
-	            	listLicence.add(new Licence(rs.getString(43), rs.getString(3), rs.getString(7), rs.getString(6),rs.getString(9), rs.getInt(10), rs.getInt(20), rs.getDouble(44), rs.getDouble(45)));
+	            	listLicence.add(new Licence(StringEscapeUtils.escapeHtml4(rs.getString(43)), StringEscapeUtils.escapeHtml4(rs.getString(3)), StringEscapeUtils.escapeHtml4(rs.getString(7)), StringEscapeUtils.escapeHtml4(rs.getString(6)),StringEscapeUtils.escapeHtml4(rs.getString(9)), rs.getInt(10), rs.getInt(20), rs.getDouble(44), rs.getDouble(45)));
 	            }
 
 	        } catch (Exception e) {
@@ -68,7 +65,7 @@ public class LicenceDAO {
 
 	            while(rs.next())
 	            {
-	            	listLicence.add(new Licence(rs.getString(43), rs.getString(3), rs.getString(7), rs.getString(6),rs.getString(9), rs.getInt(10), rs.getInt(20), rs.getDouble(44), rs.getDouble(45)));
+	            	listLicence.add(new Licence(StringEscapeUtils.escapeHtml4(rs.getString(43)), StringEscapeUtils.escapeHtml4(rs.getString(3)), StringEscapeUtils.escapeHtml4(rs.getString(7)), StringEscapeUtils.escapeHtml4(rs.getString(6)),StringEscapeUtils.escapeHtml4(rs.getString(9)), rs.getInt(10), rs.getInt(20), rs.getDouble(44), rs.getDouble(45)));
 	            }
 
 	        } catch (Exception e) {

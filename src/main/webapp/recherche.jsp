@@ -26,6 +26,7 @@
 </head>
 <body>
 
+<!-- Formulaire de recherche des clubs pour un région, département avec un critère sur le sport facultatif -->
 	<form action="Recherche" method="get">
 	  <label for="zoneGeoType">Type de zone :</label>
 	  <select id="zoneGeoType" name="zoneGeoType" onchange="changerListe()">
@@ -42,10 +43,10 @@
 		<input type="text" id="sport" name="sport"/>
 	
 	  <br><br>
-	  <input type="hidden" name="page" value="${page}" />
 	  <input type="submit" id="boutonRecherche" value="Rechercher" disabled>
 	</form>
 	
+	<!-- Formulaire de recherche des clubs dans un rayon de n kilomètres allant de 1 à 100 autour d'une commune-->
 	<form action="RechercheRayon" method="get">
 	  <label for="recherche">Commune :</label>
 	  <div style="position: relative; display: inline-block; width: 200px;">
@@ -63,7 +64,7 @@
 	</form>
 	
 	
-	<p>Nombre de résultats : ${listClub.size()}</p>
+	<p>Nombre de résultats : <c:out value="${listClub.size()}"></c:out></p>
 	
 	<div class="tabs">
 	  <button class="tab-button" onclick="showTab('tableau')">Affichage Tableau</button>
@@ -89,7 +90,6 @@
 		<tbody>
 		<c:forEach var="club" items="${listClub}">
 			<tr>
-				<td>${club.codeCommune}</td>
 				<td>${club.libelle}</td>
 				<td>${club.nomFed}</td>
 				<td>${club.departement}</td>
@@ -104,33 +104,75 @@
 	</div>
 	
 	
-	<!-- Initialisation de la carte-->
+	<!-- Initialisation de la carte et du graphique-->
 	<div id="carte" class="tab-content" style="display: none;">
 	  <div id="map" style="height: 680px; width: 80%;margin-left:75px"></div>
 	</div>
 	<div id="graph" class="tab-content" style="display: none;">
-		<canvas id="chart" style="height: 680px; width: 80%;margin-left:75px"></canvas>
+		<canvas id="chart" style="height: 400px; width: 400px;margin-left:75px"></canvas>
+		<button onclick="printDiv('graph', 'Graphique des données')">Exporter pdf</button>
 	</div>
 	
-	
-	
-	<c:if test="${page > 1}">
-	  	<a href="Recherche?zoneGeoType=${zoneGeoType}&zoneGeo=${zoneGeo}&page=${page - 1}">Précédent</a>
-	</c:if>
-	
-		<a href="Recherche?zoneGeoType=${zoneGeoType}&zoneGeo=${zoneGeo}&page=${page + 1}">Suivant</a>
-
-		
 		
 	<script>
-	
+		function printDiv(divId, title) {
+		  const content = document.getElementById(divId);
+		
+		  if (!content) {
+		    alert("Div introuvable !");
+		    return;
+		  }
+		
+		  // Récupération du canvas
+		  const canvas = content.querySelector("canvas");
+		
+		  // Création de la fenêtre d'impression
+		  const printWindow = window.open('', 'Impression', 'height=700,width=900');
+		
+		  printWindow.document.write('<html><head><title>' + title + '</title>');
+		  printWindow.document.write('<style>body { font-family: Arial; margin: 20px; }</style>');
+		  printWindow.document.write('</head><body>');
+		
+		  // Cloner le contenu
+		  const clone = content.cloneNode(true);
+		
+		  // Supprimer le canvas cloné
+		  const oldCanvas = clone.querySelector("canvas");
+		  if (oldCanvas) {
+		    oldCanvas.remove();
+		  }
+		
+		  // Ajouter le HTML cloné sans canvas
+		  printWindow.document.write(clone.innerHTML);
+		
+		  // Si le canvas existe, on le convertit en image et on l'ajoute
+		  if (canvas) {
+		    const imgData = canvas.toDataURL("image/png");
+		    printWindow.document.write('<img src="' + imgData + '" style="max-width:100%;height:auto;" />');
+		  }
+		
+		  printWindow.document.write('</body></html>');
+		  printWindow.document.close();
+		
+		  printWindow.focus();
+		  setTimeout(() => {
+		    printWindow.print();
+		    printWindow.close();
+		  }, 500);
+		}
+</script>
+
+
+		<!-- NOUVEAU -->
+	<script>
+	//fonction qui vérifie si rien n'a été tapé dans les 300ms 
 	let timer;
 
 	function rechercheIntel() {
-	    clearTimeout(timer);
-	    const suggestionBox = document.getElementById("suggestions");
+	    clearTimeout(timer); //Reset le timer
+	    const suggestionBox = document.getElementById("suggestions"); //récupération du composant de suggestion
 
-	    timer = setTimeout(() => {
+	    timer = setTimeout(() => {//permet d'exécuter le code après un certain timing
 	        const input = document.getElementById("recherche").value.toLowerCase();
 	        if (input.length < 3) {
 	            suggestionBox.style.display = "none";
@@ -160,7 +202,7 @@
 	                console.error("Erreur : ", error);
 	                suggestionBox.style.display = "none";
 	            });
-	    }, 100); // Debounce de 100ms
+	    }, 300); // Debounce de 300ms
 	}
 
 	function choisirCommune(nom,latitude,longitude) {
@@ -208,27 +250,46 @@
 	
 	<!-- Graphique -->
 	<script>
-	  const ctx = document.getElementById('chart');//exemple de graphique à adapter
-	
-	  new Chart(ctx, {
-	    type: 'bar',
-	    data: {
-	      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-	      datasets: [{
-	        label: '# of Votes',
-	        data: [12, 19, 3, 5, 2, 3],
-	        borderWidth: 1
-	      }]
-	    },
-	    options: {
-	      scales: {
-	        y: {
-	          beginAtZero: true
-	        }
-	      }
-	    }
-	  });
-	</script>
+    const ctx = document.getElementById('chart');
+
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Football', 'Basketball', 'Natation'],
+        datasets: [
+          {
+            label: 'Hommes',
+            data: [120, 90, 60],
+            backgroundColor: 'rgba(54, 162, 235, 0.7)'
+          },
+          {
+            label: 'Femmes',
+            data: [40, 55, 80],
+            backgroundColor: 'rgba(255, 99, 132, 0.7)'
+          }
+        ]
+      },
+      options: {
+    	  	responsive: false,
+	        maintainAspectRatio: true,
+        plugins: {
+          title: {
+            display: true,
+            text: 'Participation par sport (hommes et femmes empilés)'
+          }
+        },
+        scales: {
+          x: {
+            stacked: true
+          },
+          y: {
+            stacked: true,
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>
 	
 	<!-- Gestion des listes de régions/départements -->
 	<script>
@@ -308,6 +369,11 @@
 	    if (tabId === "carte") {//même type et même valeur (== convertit les deux valeurs au même types)
 	        map.invalidateSize();
 	    }
+	    if (tabId === "graph") {//même type et même valeur (== convertit les deux valeurs au même types)
+	    	    chart.resize(); // Pour forcer le redimensionnement si déjà créé
+   	  	}
+	    
+	    
 	}
 	</script>
 

@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import dao.LicenceDAO;
-
+import org.apache.commons.text.StringEscapeUtils;
 /**
  * Servlet implementation class RechercheRayon
  */
@@ -31,10 +31,10 @@ public class RechercheRayon extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String commune = (String) request.getParameter("recherche");
+		String commune = StringEscapeUtils.escapeEcmaScript((String) request.getParameter("recherche"));
 		double latitude = Double.parseDouble(request.getParameter("latitude"));
 		double longitude = Double.parseDouble(request.getParameter("longitude"));
-		String rayonStr = request.getParameter("rayon");
+		String rayonStr = StringEscapeUtils.escapeEcmaScript((request.getParameter("rayon")));
 		int rayon = 10; // valeur par défaut
 		if (rayonStr != null) {
 		    try {

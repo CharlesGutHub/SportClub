@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import models.User;
 
 import java.io.IOException;
 
@@ -45,9 +46,14 @@ public class LogIn extends HttpServlet {
         String role = request.getParameter("role");
 
         ConnexionDAO userDAO = new ConnexionDAO();
-        int loginStatus = userDAO.checkLogin(email, mdp, role);
-
-        switch (loginStatus) {
+        User user = userDAO.checkLogin(email, mdp, role);
+        
+        if (user == null)
+        {
+        	request.setAttribute("error", "Email, mot de passe ou rôle incorrect.");
+            request.getRequestDispatcher("login.jsp").forward(request, response);
+        }
+        switch (user.getEtatInscirption()) {
         case 1:
             // Connexion OK
             HttpSession session = request.getSession();
