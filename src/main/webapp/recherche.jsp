@@ -2,9 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
-
-
-    
+ 
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,6 +26,7 @@
 </head>
 <body>
 
+<!-- Formulaire de recherche des clubs pour un région, département avec un critère sur le sport facultatif -->
 	<form action="Recherche" method="get">
 	  <label for="zoneGeoType">Type de zone :</label>
 	  <select id="zoneGeoType" name="zoneGeoType" onchange="changerListe()">
@@ -40,16 +39,32 @@
 		  <option value="">Sélectionnez une zone</option>
 		</select>
 		<br><br>
-		<label for="fed">Sport :</label>
+		<label for="sport">Sport :</label>
 		<input type="text" id="sport" name="sport"/>
 	
 	  <br><br>
-	  <input type="hidden" name="page" value="${page}" />
 	  <input type="submit" id="boutonRecherche" value="Rechercher" disabled>
 	</form>
 	
+	<!-- Formulaire de recherche des clubs dans un rayon de n kilomètres allant de 1 à 100 autour d'une commune-->
+	<form action="RechercheRayon" method="get">
+	  <label for="recherche">Commune :</label>
+	  <div style="position: relative; display: inline-block; width: 200px;">
+	    <input type="text" id="recherche" name="recherche" oninput="rechercheIntel()" autocomplete="off" style="width: 100%;"/>
+	    <div id="suggestions" style="border: 1px solid #ccc; width: 200px; position: absolute; background: #fff; z-index: 1000;"></div>
+	  </div>
+	  <input type="hidden" id="latitude" name="latitude" value="" />
+	  <input type="hidden" id ="longitude" name="longitude" value="" />
+	  <label for="km" style="margin-left:10px">Rayon :</label>
+	  <div style="position: relative; display: inline-block; width: 200px;">
+	  	<output>24</output>
+	 	 <input type="range" name="rayon" value="24" min="1" max="100" oninput="this.previousElementSibling.value = this.value">
+	 	 <input type="submit" id="boutonRecherche" value="Rechercher">
+	  </div>
+	</form>
 	
-	<p>Nombre de résultats : ${listClub.size()}</p>
+	
+	<p>Nombre de résultats : <c:out value="${listClub.size()}"></c:out></p>
 	
 	<div class="tabs">
 	  <button class="tab-button" onclick="showTab('tableau')">Affichage Tableau</button>
@@ -75,7 +90,6 @@
 		<tbody>
 		<c:forEach var="club" items="${listClub}">
 			<tr>
-				<td>${club.codeCommune}</td>
 				<td>${club.libelle}</td>
 				<td>${club.nomFed}</td>
 				<td>${club.departement}</td>
@@ -90,23 +104,129 @@
 	</div>
 	
 	
-	<!-- Initialisation de la carte-->
-	<div id="carte" class="tab-content" style="display: none;">
-	  <div id="map" style="height: 680px; width: 80%;margin-left:75px"></div>
-	</div>
-	<div id="graph" class="tab-content" style="display: none;">
-		<canvas id="chart" style="height: 680px; width: 80%;margin-left:75px"></canvas>
-	</div>
-	
-	
-	
-	<c:if test="${page > 1}">
-	  	<a href="Recherche?zoneGeoType=${zoneGeoType}&zoneGeo=${zoneGeo}&page=${page - 1}">Précédent</a>
-	</c:if>
-	
-		<a href="Recherche?zoneGeoType=${zoneGeoType}&zoneGeo=${zoneGeo}&page=${page + 1}">Suivant</a>
+	<!-- Initialisation de la carte et du graphique-->
+<div id="carte" class="tab-content" style="display: none;">
+  <!-- Bouton Recherche avancée visible seulement pour 'elu' ou 'acteur' -->
+  <c:if test="${role == 'elu'}">
+    <button type="button" class="btn"
+            onclick="window.location.href='MainMenu.jsp'">
+      Recherche avancée
+    </button>
+    </c:if> 
+  <!-- Bouton Recherche avancée visible seulement pour 'elu' ou 'acteur' -->
+  <c:if test="${role == 'acteur'}">
+    <button type="button" class="btn"
+            onclick="window.location.href='AnnouncesMenu.jsp'">
+      Vers les annonces
+    </button>
+  </c:if>
 
+  <div id="map" style="height: 680px; width: 80%; margin-left:75px"></div>
+</div>
+	<div id="graph" class="tab-content" style="display: none;">
+		<canvas id="chart" style="height: 400px; width: 400px;margin-left:75px"></canvas>
+		<button onclick="printDiv('graph', 'Graphique des données')">Exporter pdf</button>
+	</div>
+	
 		
+	<script>
+		function printDiv(divId, title) {
+		  const content = document.getElementById(divId);
+		
+		  if (!content) {
+		    alert("Div introuvable !");
+		    return;
+		  }
+		
+		  // Récupération du canvas
+		  const canvas = content.querySelector("canvas");
+		
+		  // Création de la fenêtre d'impression
+		  const printWindow = window.open('', 'Impression', 'height=700,width=900');
+		
+		  printWindow.document.write('<html><head><title>' + title + '</title>');
+		  printWindow.document.write('<style>body { font-family: Arial; margin: 20px; }</style>');
+		  printWindow.document.write('</head><body>');
+		
+		  // Cloner le contenu
+		  const clone = content.cloneNode(true);
+		
+		  // Supprimer le canvas cloné
+		  const oldCanvas = clone.querySelector("canvas");
+		  if (oldCanvas) {
+		    oldCanvas.remove();
+		  }
+		
+		  // Ajouter le HTML cloné sans canvas
+		  printWindow.document.write(clone.innerHTML);
+		
+		  // Si le canvas existe, on le convertit en image et on l'ajoute
+		  if (canvas) {
+		    const imgData = canvas.toDataURL("image/png");
+		    printWindow.document.write('<img src="' + imgData + '" style="max-width:100%;height:auto;" />');
+		  }
+		
+		  printWindow.document.write('</body></html>');
+		  printWindow.document.close();
+		
+		  printWindow.focus();
+		  setTimeout(() => {
+		    printWindow.print();
+		    printWindow.close();
+		  }, 500);
+		}
+</script>
+
+
+		<!-- NOUVEAU -->
+	<script>
+	//fonction qui vérifie si rien n'a été tapé dans les 300ms 
+	let timer;
+
+	function rechercheIntel() {
+	    clearTimeout(timer); //Reset le timer
+	    const suggestionBox = document.getElementById("suggestions"); //récupération du composant de suggestion
+
+	    timer = setTimeout(() => {//permet d'exécuter le code après un certain timing
+	        const input = document.getElementById("recherche").value.toLowerCase();
+	        if (input.length < 3) {
+	            suggestionBox.style.display = "none";
+	            return;
+	        }
+
+	        fetch("RechercheIntelligenteCommune?recherche=" + encodeURIComponent(input))
+	            .then(response => {
+	                if (!response.ok) {
+	                    throw new Error("Erreur lors de la récupération des suggestions");
+	                }
+	                return response.json();
+	            })
+	            .then(suggestions => {
+	                if (suggestions.length > 0) {
+	                    suggestionBox.innerHTML = suggestions.map(c => {
+	                    	 return '<div onclick="choisirCommune(\'' + c.nom.replace(/'/g, "\\'") + '\',' + c.latitude + ',' + c.longitude + ')" style="padding: 5px; cursor: pointer;">' +
+	                         c.nom + ', ' + c.codePostale +
+	                         '</div>';
+	                    }).join('');
+	                    suggestionBox.style.display = "block";
+	                } else {
+	                    suggestionBox.style.display = "none";
+	                }
+	            })
+	            .catch(error => {
+	                console.error("Erreur : ", error);
+	                suggestionBox.style.display = "none";
+	            });
+	    }, 300); // Debounce de 300ms
+	}
+
+	function choisirCommune(nom,latitude,longitude) {
+		document.getElementById("recherche").value = nom;
+		document.getElementById("latitude").value = latitude;
+		document.getElementById("longitude").value = longitude;
+		document.getElementById("suggestions").style.display = "none";
+	}
+	</script>
 	<script>
 	
 	var map = L.map('map').setView([${listClub[0].latitude}, ${listClub[0].longitude}], 9); //Initialisation à la première ville de la liste
@@ -143,29 +263,50 @@
 	<!-- Gestion des graphiques pour l'élu -->
 	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 	
+	<!-- Graphique -->
 	<script>
-	  const ctx = document.getElementById('chart');//exemple de graphique à adapter
+    const ctx = document.getElementById('chart');
+
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Football', 'Basketball', 'Natation'],
+        datasets: [
+          {
+            label: 'Hommes',
+            data: [120, 90, 60],
+            backgroundColor: 'rgba(54, 162, 235, 0.7)'
+          },
+          {
+            label: 'Femmes',
+            data: [40, 55, 80],
+            backgroundColor: 'rgba(255, 99, 132, 0.7)'
+          }
+        ]
+      },
+      options: {
+    	  	responsive: false,
+	        maintainAspectRatio: true,
+        plugins: {
+          title: {
+            display: true,
+            text: 'Participation par sport (hommes et femmes empilés)'
+          }
+        },
+        scales: {
+          x: {
+            stacked: true
+          },
+          y: {
+            stacked: true,
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>
 	
-	  new Chart(ctx, {
-	    type: 'bar',
-	    data: {
-	      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-	      datasets: [{
-	        label: '# of Votes',
-	        data: [12, 19, 3, 5, 2, 3],
-	        borderWidth: 1
-	      }]
-	    },
-	    options: {
-	      scales: {
-	        y: {
-	          beginAtZero: true
-	        }
-	      }
-	    }
-	  });
-	</script>
-	
+	<!-- Gestion des listes de régions/départements -->
 	<script>
 	const regions = [
 	  "Auvergne-Rhône-Alpes", "Bourgogne-Franche-Comté", "Bretagne", "Centre-Val de Loire", "Corse",
@@ -243,6 +384,11 @@
 	    if (tabId === "carte") {//même type et même valeur (== convertit les deux valeurs au même types)
 	        map.invalidateSize();
 	    }
+	    if (tabId === "graph") {//même type et même valeur (== convertit les deux valeurs au même types)
+	    	    chart.resize(); // Pour forcer le redimensionnement si déjà créé
+   	  	}
+	    
+	    
 	}
 	</script>
 
