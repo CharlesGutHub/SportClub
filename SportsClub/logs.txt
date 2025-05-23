@@ -1,0 +1,253 @@
+[2025-05-12T13:52:28.832019900] Tentative de connexion : email = rrr
+[2025-05-12T13:52:29.150543500] Connexion réussie : rrr
+[2025-05-12T13:52:54.536909600] Tentative de connexion : email = rrr
+[2025-05-12T13:52:54.783527600] Connexion échouée : rrr
+[2025-05-12T13:53:09.258837500] Tentative de connexion : email = rrr
+[2025-05-12T13:53:09.284652400] Connexion échouée : rrr
+[2025-05-12T13:55:52.832734400] Tentative de connexion : email = 
+[2025-05-12T13:55:53.101703500] Connexion échouée : 
+[2025-05-12T16:25:29.415134400] Tentative de connexion : email = rrr
+[2025-05-12T16:25:29.700236300] Connexion échouée : rrr
+[2025-05-12T16:25:52.338693600] Tentative de connexion : email = rrr
+[2025-05-12T16:25:52.367069800] Connexion échouée : rrr
+[2025-05-12T16:26:03.019264] Tentative de connexion : email = bapa
+[2025-05-12T16:26:03.047415500] Connexion échouée : bapa
+[2025-05-12T16:26:35.179044200] Tentative de connexion : email = rrr
+[2025-05-12T16:26:35.209552] Connexion réussie : rrr
+[2025-05-12T16:55:58.174365100] Adresse IP : 192.168.24.1
+[2025-05-12T16:55:58.202520400] Tentative de connexion : email = rrr
+[2025-05-12T16:55:58.466388800] Connexion réussie : rrr
+[2025-05-12T17:40:47.034972800] Adresse IP : 192.168.24.1
+[2025-05-12T17:40:47.066135400] Tentative de connexion : email = rrr
+[2025-05-12T17:40:47.320319800] Connexion réussie : rrr
+[2025-05-12T18:07:48.793618300] Adresse IP : 192.168.24.1
+[2025-05-12T18:07:48.821916900] Tentative de connexion : email = fff
+[2025-05-12T18:07:49.057872400] Connexion échouée : fff
+[2025-05-12T18:07:52.556744500] Adresse IP : 192.168.24.1
+[2025-05-12T18:07:52.582626500] Tentative de connexion : email = fff
+[2025-05-12T18:07:52.608483300] Connexion échouée : fff
+[2025-05-12T18:10:36.717453300] Adresse IP : 192.168.24.1
+[2025-05-12T18:10:36.744411200] Tentative de connexion : email = fff
+[2025-05-12T18:10:37.012417600] Connexion échouée : fff
+[2025-05-12T18:11:06.831958500] Adresse IP : 192.168.24.1
+[2025-05-12T18:11:06.856418200] Tentative de connexion : email = fff
+[2025-05-12T18:11:07.085092400] Connexion échouée : fff
+[2025-05-12T18:12:37.934422400] Adresse IP : 192.168.24.1
+[2025-05-12T18:12:37.953342] Tentative de connexion : email = bapa
+[2025-05-12T18:12:38.176361600] Connexion échouée : bapa
+[2025-05-12T18:13:31.512811200] Adresse IP : 192.168.24.1
+[2025-05-12T18:13:31.541215900] Tentative de connexion : email = bapa
+[2025-05-12T18:13:31.785480600] Connexion échouée : bapa
+[2025-05-12T18:13:50.722524200] Adresse IP : 192.168.24.1
+[2025-05-12T18:13:50.745353100] Tentative de connexion : email = bapa
+[2025-05-12T18:13:50.775457300] Connexion échouée : bapa
+[2025-05-12T18:13:56.362887200] Adresse IP : 192.168.24.1
+[2025-05-12T18:13:56.389893400] Tentative de connexion : email = bapa
+[2025-05-12T18:13:56.422629200] Connexion échouée : bapa
+[2025-05-12T18:22:06.596517700] Adresse IP : 192.168.24.1
+[2025-05-12T18:22:06.623611100] Tentative de connexion : email = bapa
+[2025-05-12T18:22:06.912920800] Connexion réussie : bapa
+[2025-05-12T18:23:02.461622200] Adresse IP : 192.168.24.1
+[2025-05-12T18:23:02.492431200] Tentative de connexion : email = bapa
+[2025-05-12T18:23:02.807762300] Connexion réussie : bapa
+[2025-05-12T18:24:19.235318800] Adresse IP : 192.168.24.1
+[2025-05-12T18:24:19.258795200] Tentative de connexion : email = roro
+[2025-05-12T18:24:19.553919800] Connexion réussie : roro
+[2025-05-13T08:37:51.670805100] Adresse IP : 192.168.24.1
+[2025-05-13T08:37:51.695812900] Tentative de connexion : email = bapa
+[2025-05-13T08:42:03.691492500] Adresse IP : 192.168.24.1
+[2025-05-13T08:42:03.767536100] Tentative de connexion : email = bapa
+[2025-05-13T08:42:08.139813600] Adresse IP : 192.168.24.1
+[2025-05-13T08:42:08.166845700] Tentative de connexion : email = bapa
+[2025-05-13T09:04:19.666567700] Adresse IP : 192.168.24.1
+[2025-05-13T09:04:19.689952100] Tentative de connexion : email = bapa
+[2025-05-13T09:04:21.211101300] Adresse IP : 192.168.24.1
+[2025-05-13T09:04:21.247275] Tentative de connexion : email = bapa
+[2025-05-13T09:04:21.436153800] Adresse IP : 192.168.24.1
+[2025-05-13T09:04:21.463717200] Tentative de connexion : email = bapa
+[2025-05-13T09:04:21.690899600] Adresse IP : 192.168.24.1
+[2025-05-13T09:04:21.719647600] Tentative de connexion : email = bapa
+[2025-05-13T09:06:48.182940100] Adresse IP : 192.168.24.1
+[2025-05-13T09:06:48.217484200] Tentative de connexion : email = bapa
+[2025-05-13T09:09:10.703042400] Adresse IP : 192.168.24.1
+[2025-05-13T09:09:10.736988100] Tentative de connexion : email = bapa
+[2025-05-13T09:09:11.108578900] Connexion réussie : bapa
+[2025-05-13T09:40:47.565206700] Adresse IP : 192.168.24.1
+[2025-05-13T09:40:47.596455400] Tentative de connexion : email = rara
+[2025-05-13T09:40:47.863655800] Connexion échouée : rara
+[2025-05-13T09:40:52.981470200] Adresse IP : 192.168.24.1
+[2025-05-13T09:40:53.013046900] Tentative de connexion : email = rara
+[2025-05-13T09:40:53.050376600] Connexion échouée : rara
+[2025-05-13T09:41:06.996469600] Adresse IP : 192.168.24.1
+[2025-05-13T09:41:07.021312100] Tentative de connexion : email = rara
+[2025-05-13T09:41:07.053559100] Connexion échouée : rara
+[2025-05-13T09:41:22.493271900] Adresse IP : 192.168.24.1
+[2025-05-13T09:41:22.519651300] Tentative de connexion : email = bapa
+[2025-05-13T09:41:22.620244100] Connexion réussie : bapa
+[2025-05-13T09:41:43.804834] Adresse IP : 192.168.24.1
+[2025-05-13T09:41:43.828748200] Tentative de connexion : email = rara@email.com
+[2025-05-13T09:41:44.149035500] Connexion réussie : rara@email.com
+[2025-05-13T10:58:42.863789200] Adresse IP : 192.168.24.1
+[2025-05-13T10:58:42.900671700] Tentative de connexion : email = rara@email.com
+[2025-05-13T10:58:43.284049800] Connexion réussie : rara@email.com
+[2025-05-13T11:20:05.872676800] Adresse IP : 192.168.24.1
+[2025-05-13T11:20:05.904575600] Tentative de connexion : email = rara@email.com
+[2025-05-13T11:20:06.281897] Connexion réussie : rara@email.com
+[2025-05-13T11:35:55.750354600] Adresse IP : 192.168.24.1
+[2025-05-13T11:35:55.772429600] Tentative de connexion : email = rara@email.com
+[2025-05-13T11:35:56.083257100] Connexion réussie : rara@email.com
+[2025-05-13T16:04:23.237275900] Adresse IP : 192.168.24.1
+[2025-05-13T16:04:23.268313300] Recherche clubs : fédération = roro, zone = haha
+[2025-05-13T16:04:26.525469500] Adresse IP : 192.168.24.1
+[2025-05-13T16:04:26.548473100] Recherche clubs : fédération = roro, zone = haha
+[2025-05-13T16:10:50.059259700] Adresse IP : 192.168.24.1
+[2025-05-13T16:10:50.082064200] Tentative de connexion : email = rara@email.com
+[2025-05-13T16:10:50.605197800] Connexion réussie : rara@email.com
+[2025-05-13T16:23:41.002967400] Adresse IP : 192.168.24.1
+[2025-05-13T16:23:41.031789200] Tentative de connexion : email = bapa@gmail.com
+[2025-05-13T16:23:41.355972200] Connexion réussie : bapa@gmail.com
+[2025-05-14T08:30:09.196063900] Adresse IP : 192.168.24.1
+[2025-05-14T08:30:09.224295600] Tentative de connexion : email = rara@email.com
+[2025-05-14T08:30:09.767286700] Connexion réussie : rara@email.com
+[2025-05-14T08:36:25.594434200] Adresse IP : 192.168.24.1
+[2025-05-14T08:36:25.619445600] Recherche clubs : fédération = fédé, zone = capi
+[2025-05-14T08:48:38.149671500] Adresse IP : 192.168.24.1
+[2025-05-14T08:48:38.174671400] Tentative de connexion : email = rara@email.com
+[2025-05-14T08:48:38.501345600] Connexion réussie : rara@email.com
+[2025-05-14T09:49:03.585207200] Adresse IP : 192.168.24.1
+[2025-05-14T09:49:03.607065800] Tentative de connexion : email = rara@email.com
+[2025-05-14T09:49:03.964951200] Connexion réussie : rara@email.com
+[2025-05-14T09:59:04.617053400] Adresse IP : 192.168.24.1
+[2025-05-14T09:59:04.640972100] Tentative de connexion : email = rara@email.com
+[2025-05-14T09:59:04.972545500] Connexion réussie : rara@email.com
+[2025-05-14T10:28:38.691218700] Adresse IP : 192.168.24.1
+[2025-05-14T10:28:38.712249400] Tentative de connexion : email = rara@email.com
+[2025-05-14T10:28:39.011215400] Connexion échouée : rara@email.com
+[2025-05-14T10:28:42.624692300] Adresse IP : 192.168.24.1
+[2025-05-14T10:28:42.642692400] Tentative de connexion : email = rara@email.com
+[2025-05-14T10:28:42.668692200] Connexion échouée : rara@email.com
+[2025-05-14T10:29:32.474465500] Adresse IP : 192.168.24.1
+[2025-05-14T10:29:32.505707100] Tentative de connexion : email = bapa@gmail.com
+[2025-05-14T10:29:32.615078300] Connexion réussie : bapa@gmail.com
+[2025-05-14T11:31:35.747305400] Adresse IP : 192.168.24.1
+[2025-05-14T11:31:35.768660100] Recherche clubs : fédération = , zone = 
+[2025-05-16T13:40:29.496625700] Adresse IP : 192.168.23.1
+[2025-05-16T13:40:29.530710500] Tentative de connexion : email = rara@gmail.com
+[2025-05-16T13:40:30.186727400] Connexion échouée : rara@gmail.com
+[2025-05-16T13:40:51.058258200] Adresse IP : 192.168.23.1
+[2025-05-16T13:40:51.089389100] Tentative de connexion : email = bapa@gmail.com
+[2025-05-16T13:40:51.203772] Connexion réussie : bapa@gmail.com
+[2025-05-16T13:43:52.843196900] Adresse IP : 10.3.181.12
+[2025-05-16T13:43:52.882998300] Tentative de connexion : email = bapa@gmail.com
+[2025-05-16T13:43:53.258019300] Connexion réussie : bapa@gmail.com
+[2025-05-16T14:11:42.246085700] Adresse IP : 10.3.181.12
+[2025-05-16T14:11:42.268635900] Tentative de connexion : email = bapa@gmail.com
+[2025-05-16T14:11:42.583182400] Connexion réussie : bapa@gmail.com
+[2025-05-16T15:08:15.101545600] Adresse IP : 192.168.24.1
+[2025-05-16T15:08:15.132470900] Recherche clubs : fédération = rara, zone = ee
+[2025-05-16T15:08:19.165311400] Adresse IP : 192.168.24.1
+[2025-05-16T15:08:19.190810300] Recherche clubs : fédération = rara, zone = ee
+[2025-05-16T15:11:43.401399800] Adresse IP : 192.168.24.1
+[2025-05-16T15:11:43.432010700] Recherche clubs : fédération = , zone = 
+[2025-05-16T15:26:19.842289600] Adresse IP : 10.3.181.12
+[2025-05-16T15:26:19.866906900] Tentative de connexion : email = bapa@gmail.com
+[2025-05-16T15:26:20.221918800] Connexion réussie : bapa@gmail.com
+[2025-05-16T15:46:20.359119300] Adresse IP : 192.168.24.1
+[2025-05-16T15:46:20.392142300] Recherche clubs : fédération = zaza, zone = zzz
+[2025-05-16T16:11:36.141969700] Recherche clubs : fédération = zaza, zone = zaza, IP = 192.168.24.1
+[2025-05-16T16:21:04.537237300] Recherche clubs : fédération = zaza, zone = zaza, IP = 10.3.181.12
+[2025-05-16T16:23:43.729104400] Adresse IP : 10.3.181.12
+[2025-05-16T16:23:43.753698600] Tentative de connexion : email = bapa@gmail.com
+[2025-05-16T16:23:44.048317400] Connexion réussie : bapa@gmail.com
+[2025-05-16T16:24:18.461334400] Recherche clubs : fédération = baba, zone = baba, IP = 10.3.181.12
+[2025-05-16T17:38:41.195523100] Adresse IP : 10.3.181.12
+[2025-05-16T17:38:41.221554700] Tentative de connexion : email = bapa@gmail.com
+[2025-05-16T17:38:41.549554] Connexion réussie : bapa@gmail.com
+[2025-05-16T17:46:53.635708800] Adresse IP : 10.3.181.12
+[2025-05-16T17:46:53.662098100] Tentative de connexion : email = bapa@gmail.com
+[2025-05-16T17:46:53.956464800] Connexion réussie : bapa@gmail.com
+[2025-05-16T18:22:26.511859600] Adresse IP : 10.3.181.12
+[2025-05-16T18:22:26.540767700] Tentative de connexion : email = bapa@gmail.com
+[2025-05-16T18:22:26.847435] Connexion réussie : bapa@gmail.com
+[2025-05-19T14:47:23.668602100] Adresse IP : 10.3.181.12
+[2025-05-19T14:47:23.694875] Tentative de connexion : email = bapa@gmail.com
+[2025-05-19T14:47:23.987710500] Connexion réussie : bapa@gmail.com
+[2025-05-19T14:48:04.890273] Adresse IP : 10.3.181.12
+[2025-05-19T14:48:04.916699400] Tentative de connexion : email = bapa@gmail.com
+[2025-05-19T14:48:05.205144200] Connexion réussie : bapa@gmail.com
+[2025-05-19T14:48:55.562105500] Adresse IP : 10.3.181.12
+[2025-05-19T14:48:55.588890] Tentative de connexion : email = jacques@gmail.com
+[2025-05-19T14:48:55.894113100] Connexion réussie : jacques@gmail.com
+[2025-05-19T14:57:30.308569400] Adresse IP : 10.3.181.12
+[2025-05-19T14:57:30.334209500] Tentative de connexion : email = ee@gmail.com
+[2025-05-19T14:57:30.624919700] Connexion réussie : ee@gmail.com
+[2025-05-19T14:59:20.213994] Adresse IP : 10.3.181.12
+[2025-05-19T14:59:20.240641700] Tentative de connexion : email = ee@gmail.com
+[2025-05-19T14:59:20.543042100] Connexion réussie : ee@gmail.com
+[2025-05-19T14:59:53.401912400] Adresse IP : 10.3.181.12
+[2025-05-19T14:59:53.433215300] Tentative de connexion : email = ee@gmail.com
+[2025-05-19T14:59:53.752469900] Connexion réussie : ee@gmail.com
+[2025-05-19T15:13:51.921090700] Adresse IP : 10.3.181.12
+[2025-05-19T15:13:51.946106300] Tentative de connexion : email = ee@gmail.com
+[2025-05-19T15:13:52.258664800] Connexion réussie : ee@gmail.com
+[2025-05-19T15:19:44.879207800] Adresse IP : 10.3.181.12
+[2025-05-19T15:19:44.902237] Tentative de connexion : email = ee@gmail.com
+[2025-05-19T15:19:45.214393500] Connexion réussie : ee@gmail.com
+[2025-05-19T16:32:24.709304200] Adresse IP : 10.3.181.12
+[2025-05-19T16:32:24.742640100] Tentative de connexion : email = ee@gmail.com
+[2025-05-19T16:32:25.107737700] Connexion réussie : ee@gmail.com
+[2025-05-19T22:09:29.903631700] Adresse IP : IP non trouvée
+[2025-05-19T22:09:29.908691200] Tentative de connexion : email = bapa@gmail.com
+[2025-05-19T22:09:30.383076] Connexion échouée : bapa@gmail.com
+[2025-05-19T22:09:38.973968700] Adresse IP : IP non trouvée
+[2025-05-19T22:09:38.975477700] Tentative de connexion : email = bapa@gmail.com
+[2025-05-19T22:09:38.991503600] Connexion échouée : bapa@gmail.com
+[2025-05-19T22:36:31.815751600] Adresse IP : IP non trouvée
+[2025-05-19T22:36:31.821756200] Tentative de connexion : email = bapa@gmail.com
+[2025-05-19T22:36:32.317962100] Connexion échouée : bapa@gmail.com
+[2025-05-19T22:36:39.175300900] Adresse IP : IP non trouvée
+[2025-05-19T22:36:39.176306500] Tentative de connexion : email = bapa@gmail.com
+[2025-05-19T22:36:39.191455100] Connexion échouée : bapa@gmail.com
+[2025-05-19T22:52:38.885227200] Adresse IP : IP non trouvée
+[2025-05-19T22:52:38.889249700] Tentative de connexion : email = bapa@gmail.com
+[2025-05-19T22:52:39.574980100] Connexion réussie : bapa@gmail.com
+[2025-05-20T03:21:30.641142400] Adresse IP : IP non trouvée
+[2025-05-20T03:21:30.643204700] Tentative de connexion : email = a@gmail.com
+[2025-05-20T03:21:31.033143400] Connexion réussie : a@gmail.com
+2025-05-20T05:17:54.802508200 | IP: 192.168.181.159 | Adresse IP : 192.168.181.159
+2025-05-20T05:17:54.805504400 | IP: 192.168.181.159 | Tentative de connexion : email = jacques@gmail.com
+2025-05-20T05:17:55.192800500 | IP: 192.168.181.159 | Connexion réussie : jacques@gmail.com
+2025-05-20T05:33:58.447099900 | IP: 192.168.181.159 | Recherche clubs : fédération = ddaaa, zone = aaa, IP = 192.168.181.159
+2025-05-20T08:10:50.567492 | IP: 10.20.70.177 | Recherche clubs : fédération = aaa, zone = zzz, IP = 10.20.70.177
+2025-05-20T08:11:18.671080 | IP: 10.20.70.177 | Recherche clubs : fédération = a, zone = a, IP = 10.20.70.177
+2025-05-20T09:04:24.226332300 | IP: 10.20.70.177 | Recherche clubs : fédération = zaza, zone = "ee, IP = 10.20.70.177
+2025-05-20T11:27:21.768265500 | IP: 10.20.70.177 | Adresse IP : 10.20.70.177
+2025-05-20T11:27:21.773265800 | IP: 10.20.70.177 | Tentative de connexion : email = bbb@gmail.com
+2025-05-20T11:27:22.442656600 | IP: 10.20.70.177 | Connexion réussie : bbb@gmail.com
+2025-05-20T11:27:51.816396400 | IP: 10.20.70.177 | Recherche clubs : fédération = zaza, zone = zzz, IP = 10.20.70.177
+[2025-05-21T13:25:26.190962600] Tentative de connexion : bapa@gmail.com
+[2025-05-21T13:25:26.349055400] Connexion échouée : bapa@gmail.com
+[2025-05-21T13:26:14.248702700] Tentative de connexion : bapa@gmail.com
+[2025-05-21T13:26:14.412776200] Connexion échouée : bapa@gmail.com
+[2025-05-21T13:30:20.727793800] Tentative de connexion : a@gmail.com
+[2025-05-21T13:30:20.877785100] Connexion échouée : a@gmail.com
+[2025-05-21T14:43:11.623548600] Tentative de connexion : bapa@gmail.com
+[2025-05-21T14:43:11.797507500] Connexion échouée : bapa@gmail.com
+[2025-05-21T15:04:09.359700700] Tentative de connexion : baf@gmail.com
+[2025-05-21T15:04:09.521203400] Connexion échouée : baf@gmail.com
+[2025-05-21T15:04:31.509386200] Tentative de connexion : baf@gmail.com
+[2025-05-21T15:04:31.628180300] Connexion échouée : baf@gmail.com
+[2025-05-21T15:21:32.602461] Tentative de connexion : baf@gmail.com
+[2025-05-21T15:21:32.764307900] Connexion réussie : baf@gmail.com
+[2025-05-21T18:25:28.413988500] Tentative de connexion : jacques.bapa@groupe-esigelec.org | IP locale: 10.20.70.177 | IP publique: 5.226.8.139
+[2025-05-21T18:25:28.522177400] Connexion réussie : jacques.bapa@groupe-esigelec.org | IP locale: 10.20.70.177 | IP publique: 5.226.8.139
+[2025-05-21T18:38:29.390270900] Tentative de connexion : jacques.bapa@groupe-esigelec.org | IP locale: 10.20.70.177 | IP publique: 5.226.8.139
+[2025-05-21T18:38:29.488032500] Connexion réussie : jacques.bapa@groupe-esigelec.org | IP locale: 10.20.70.177 | IP publique: 5.226.8.139
+[2025-05-21T18:42:30.367996] Tentative de connexion : jacques.bapa@groupe-esigelec.org | IP locale: 10.20.70.177 | IP publique: 5.226.8.139
+[2025-05-21T18:42:30.462350100] Connexion réussie : jacques.bapa@groupe-esigelec.org | IP locale: 10.20.70.177 | IP publique: 5.226.8.139
+[2025-05-21T18:47:10.874296500] Tentative de connexion : jacques.bapa@groupe-esigelec.org | IP locale: 10.20.70.177 | IP publique: 5.226.8.139
+[2025-05-21T18:47:10.965657500] Connexion réussie : jacques.bapa@groupe-esigelec.org | IP locale: 10.20.70.177 | IP publique: 5.226.8.139
+[2025-05-22T10:02:48.421409300] Tentative de connexion : jacques.bapa@groupe-esigelec.org | IP locale: 192.168.167.159 | IP publique: 93.22.134.88
+[2025-05-22T10:02:48.445333900] Connexion échouée : jacques.bapa@groupe-esigelec.org | IP locale: 192.168.167.159 | IP publique: 93.22.134.88
+[2025-05-22T10:02:59.778743900] Tentative de connexion : jacques.bapa@groupe-esigelec.org | IP locale: 192.168.167.159 | IP publique: 93.22.134.88
+[2025-05-22T10:02:59.791407500] Connexion échouée : jacques.bapa@groupe-esigelec.org | IP locale: 192.168.167.159 | IP publique: 93.22.134.88
