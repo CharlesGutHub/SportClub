@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import models.InfoDepartement;
+import utils.DataBaseCon;
 
 public class DepartementDAO {
     private Connection connection;
@@ -23,6 +24,7 @@ public class DepartementDAO {
                 "FROM licences GROUP BY departement";
         
         try (PreparedStatement stmt = connection.prepareStatement(sql);
+
              ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {

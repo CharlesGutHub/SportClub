@@ -50,8 +50,8 @@ public class LogIn extends HttpServlet {
         String role  = request.getParameter("role");
 
         ConnexionDAO userDAO = new ConnexionDAO();
-        int loginStatus = userDAO.checkLogin(email, mdp, role);
-
+        int loginStatus = userDAO.checkLogin(email,mdp,role);
+         
         switch (loginStatus) {
             case 1:
                 // Connexion OK → création de la session
