@@ -105,9 +105,26 @@
 	
 	
 	<!-- Initialisation de la carte et du graphique-->
-	<div id="carte" class="tab-content" style="display: none;">
-	  <div id="map" style="height: 680px; width: 80%;margin-left:75px"></div>
-	</div>
+
+<div id="carte" class="tab-content" style="display: none;">
+  <!-- Bouton Recherche avancée visible seulement pour 'elu' ou 'acteur' -->
+  <c:if test="${role == 'elu'}">
+    <button type="button" class="btn"
+            onclick="window.location.href='MainMenu.jsp'">
+      Recherche avancée
+    </button>
+    </c:if> 
+  <!-- Bouton Recherche avancée visible seulement pour 'elu' ou 'acteur' -->
+  <c:if test="${role == 'acteur'}">
+    <button type="button" class="btn"
+            onclick="window.location.href='AnnouncesMenu.jsp'">
+      Vers les annonces
+    </button>
+  </c:if>
+
+  <div id="map" style="height: 680px; width: 80%; margin-left:75px"></div>
+</div>
+
 	<div id="graph" class="tab-content" style="display: none;">
 		<canvas id="chart" style="height: 400px; width: 400px;margin-left:75px"></canvas>
 		<button onclick="printDiv('graph', 'Graphique des données')">Exporter pdf</button>

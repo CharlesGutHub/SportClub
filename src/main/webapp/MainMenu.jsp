@@ -20,8 +20,9 @@
     <form action="DiagramsForm.jsp" method="get">
         <input type="submit" value="Vers les Statistiques" />
     </form>
-    <form action="Index.jsp" method="get">
-        <input type="submit" value="Deconnexion" />
-    </form>
+    <form action="Logout" method="post">
+    <input type="submit" value="Déconnexion" />
+</form>
+
 </body>
 </html>
