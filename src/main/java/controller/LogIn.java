@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import models.User;
 
 import java.io.IOException;
 
@@ -50,14 +51,13 @@ public class LogIn extends HttpServlet {
         String role  = request.getParameter("role");
 
         ConnexionDAO userDAO = new ConnexionDAO();
-        int loginStatus = userDAO.checkLogin(email,mdp,role);
+        User user = userDAO.checkLogin(email,mdp,role);
          
-        switch (loginStatus) {
+        switch (user.getEtatInscirption()) {
             case 1:
                 // Connexion OK → création de la session
                 HttpSession session = request.getSession(true);
-                session.setAttribute("email", email);
-                session.setAttribute("role", role);
+                session.setAttribute("user",user);
 
                 // Création des cookies pour "email" et "role" (7 jours, HttpOnly)
                 Cookie emailCookie = new Cookie("email", email);
@@ -71,7 +71,7 @@ public class LogIn extends HttpServlet {
                 response.addCookie(roleCookie);
 
                 // Redirection vers la page de recherche avancée
-                response.sendRedirect(request.getContextPath() + "/recherche.jsp");
+                response.sendRedirect(request.getContextPath() + "/index.jsp");
                 break;
 
             case 2:
