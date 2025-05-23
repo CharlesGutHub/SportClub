@@ -8,6 +8,7 @@ public class ConfigLoader {
     private static final Properties properties = new Properties();
 
     static {
+    	
         try (InputStream input = ConfigLoader.class.getClassLoader().getResourceAsStream("config.properties")) {
             if (input == null) {
                 throw new RuntimeException("Fichier config.properties non trouvé !");
