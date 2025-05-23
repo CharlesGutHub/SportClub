@@ -12,13 +12,13 @@
      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
      crossorigin=""/>
      <!-- Make sure you put this AFTER Leaflet's CSS -->
- <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-     crossorigin=""></script>
-<!-- Leaflet MarkerCluster plugin -->
-<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
-<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
-<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+	 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+	     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+	     crossorigin=""></script>
+	<!-- Leaflet MarkerCluster plugin -->
+	<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+	<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+	<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
      
      
@@ -58,9 +58,9 @@
 	  <label for="km" style="margin-left:10px">Rayon :</label>
 	  <div style="position: relative; display: inline-block; width: 200px;">
 	  	<output>24</output>
-	 	 <input type="range" name="rayon" value="24" min="1" max="100" oninput="this.previousElementSibling.value = this.value">
-	 	 <input type="submit" id="boutonRecherche" value="Rechercher">
+	  	<div><input type="range" name="rayon" value="24" min="1" max="100" oninput="this.previousElementSibling.value = this.value"></div>	 	 
 	  </div>
+	  	  	<div><input type="submit" id="boutonRecherche" value="Rechercher"></div>
 	</form>
 	
 	
